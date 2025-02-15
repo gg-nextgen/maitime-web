@@ -1,0 +1,529 @@
+/* 🌙 SFONDO GENERALE - TEMA SCURO */
+body, ion-content {
+  background: linear-gradient(to bottom right, #000046, #000062); /* Gradiente Blu Scuro */
+  color: white; /* Testo Bianco */
+}
+
+/* Stile generale della header */
+.header {
+  --background: none; /* Rimuoviamo il background trasparente */
+  background: linear-gradient(to right, #000046, #000062); /* Sfondo solido con gradiente */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+}
+  
+/* Contenitore centrale - Applicare a tutte le sezioni */
+.container {
+    max-width: 900px; /* Riduzione per allinearsi al design */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px; /* Maggiore respiro ai lati */
+  }
+  
+  /* Stile del logo */
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .logo img {
+    height: 20px; /* Altezza adattabile */
+    width: auto;  /* Mantiene le proporzioni */
+  }
+
+  .image-content img {
+    height: auto;
+    width: 260px;
+  }
+  
+  
+  /* Menu di navigazione */
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+/* 🔹 Contenitore Pulsanti */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* 🔹 Stile del Pulsante "Prenota un Incontro" */
+.book-button {
+  background: #111; /* Sfondo scuro */
+  color: #888; /* Testo grigio più scuro */
+  text-decoration: none;
+  border: 2px solid #444; /* Bordo grigio scuro */
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Effetto Hover - Cambia testo in bianco */
+.book-button:hover {
+  color: white;
+  border-color: #888;
+  transform: scale(1.05); /* Leggero ingrandimento */
+}
+
+.ask-button {
+    background: linear-gradient(to right, #000062, #FF00FF); /* Gradiente */
+    color: white; /* Testo bianco */
+    text-decoration: none;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid #FFF;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Effetto hover */
+  .ask-button:hover {
+    background: linear-gradient(to right, #000050, #e600e6); /* Sfuma leggermente più scuro */
+    transform: scale(1.05); /* Leggero ingrandimento */
+  }
+  
+  /* Icona freccia */
+  .ask-button::after {
+    content: "→";
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Effetto hover sulla freccia */
+  .ask-button:hover::after {
+    transform: translateX(5px); /* La freccia si sposta leggermente */
+  }
+  
+  /* 📱 Mobile Optimization - Pulsanti uno sotto l'altro */
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column; /* Cambia la disposizione verticale */
+    align-items: center;
+  }
+
+  .ask-button,
+  .book-button {
+    width: 100%; /* Pulsanti larghi quanto il container */
+    text-align: center;
+  }
+}
+
+/* Hero Section - Limitare larghezza per migliorare leggibilità */
+.hero {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 120px 20px; /* Aumentato padding per più respiro */
+  }
+  
+  /* Hero Titolo - Maggiore enfasi */
+  .hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  
+  /* Hero Testo - Migliore leggibilità */
+  .hero p {
+    font-size: 20px;
+    margin-top: 15px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+/* Sezione AI - Layout a due colonne */
+.section-ai {
+    max-width: 900px; /* Stessa larghezza del contenitore principale */
+    margin: 20px auto; /* Margini per separare le sezioni */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px; /* Spazio tra testo e immagine */
+    padding: 40px 20px;
+  }
+  
+  /* Colonna del testo */
+  .text-content {
+    flex: 1; /* Occupa metà spazio */
+    text-align: left;
+  }
+  
+  .text-content h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .text-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff;
+  }
+  
+  /* Colonna dell'immagine */
+  .image-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+/* 📱 Mobile Optimization per Sezione AI */
+@media (max-width: 768px) {
+  .section-ai {
+    flex-direction: column; /* Disposizione verticale */
+    text-align: center;
+  }
+
+  .text-content {
+    text-align: center;
+  }
+
+  .image-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-content img {
+    max-width: 100%;
+  }
+}
+  
+/* Sezione delle Feature */
+.features-section {
+  max-width: 1000px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Quattro colonne */
+  gap: 20px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Stile di ogni box */
+.feature-box {
+  background: #000062;
+  border-radius: 12px;
+  border: 2px solid #FF00FF;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px); /* Effetto hover */
+}
+
+/* Icone sopra ogni box */
+.feature-box img {
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+/* Titolo delle feature */
+.feature-box h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* Testo delle feature */
+.feature-box p {
+  color: #fff;
+  font-size: 0.8em;
+  text-align: left;
+  line-height: 1.5;
+}
+
+/* 📱 Mobile Optimization per Features */
+@media (max-width: 768px) {
+  .features-section {
+    grid-template-columns: 1fr; /* Una colonna su mobile */
+    gap: 15px;
+  }
+
+  .feature-box {
+    padding: 20px;
+  }
+
+  .feature-box h3 {
+    text-align: left;
+  }
+
+  .feature-box p {
+    font-size: 1.2em;
+    text-align: left;
+  }
+}
+
+/* Sezione Video */
+.video-section {
+  max-width: 1000px; /* Stessa larghezza delle altre sezioni */
+  margin: 80px auto;
+  padding: 40px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05); /* Leggero contrasto */
+  border-radius: 12px;
+  border: 2px solid #ff00ff;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Descrizione sopra il video */
+.video-description h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.video-description p {
+  font-size: 18px;
+  color: #ddd;
+  text-align: left;
+  padding: 0px 50px;
+  margin-bottom: 20px;
+}
+
+/* Box del video */
+.video-container {
+  display: flex;
+  justify-content: center;
+}
+
+.video-container video {
+  width: 100%;
+  max-width: 900px; /* Larghezza massima */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🌟 Sezione CTA */
+.cta-section {
+  max-width: 1000px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Titolo della CTA */
+.cta-section h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* Testo della CTA */
+.cta-section p {
+  font-size: 18px;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+/* Contenitore dei pulsanti */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Stile pulsanti CTA */
+.cta-button {
+  padding: 14px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: none;
+}
+
+/* Pulsante primario */
+.cta-button.primary {
+  background: linear-gradient(to right, #FF00FF, #000062);
+  color: white;
+}
+
+.cta-button.primary:hover {
+  background: linear-gradient(to right, #e600e6, #000050);
+  transform: scale(1.05);
+}
+
+/* Pulsante secondario */
+.cta-button.secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.cta-button.secondary:hover {
+  background: white;
+  color: #000062;
+  transform: scale(1.05);
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 768px) {
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+}
+/* 🌙 Footer */
+.footer {
+  background: rgba(0, 0, 20, 0.9); /* Quasi nero, con leggera trasparenza */
+  backdrop-filter: blur(10px);
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 60px;
+  border-top: 2px solid rgba(255, 255, 255, 0.1); /* Linea sottile separatrice */
+}
+
+/* Contenitore centrale */
+.footer-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo del footer */
+.footer-logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Link di navigazione */
+.footer-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.6em;
+  transition: color 0.3s;
+}
+
+.footer-nav p {
+  color: white;
+  text-decoration: none;
+  font-size: 0.6em;
+  transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+  color: #ff00ff;
+}
+
+/* Icone social */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  font-size: 24px;
+  color: white;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover .social-icon {
+  transform: scale(1.2);
+  color: #ff00ff;
+}
+
+/* Testo legale */
+.footer-legal {
+  font-size: 0.6em;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 768px) {
+  .footer-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Personalizzazione della modale */
+.custom-modal {
+  --width: 90%; /* Larghezza della modale */
+  --max-width: 500px; /* Massima larghezza su schermi grandi */
+  --height: auto; /* Altezza adattabile */
+  --background: rgba(0, 0, 0, 0.9); /* Sfondo scuro trasparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenuto della modale */
+.modal-content {
+  background: #000000; /* Sfondo interno della modale */
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  width: 100%;
+  box-shadow: 0px 10px 30px rgba(255, 0, 255, 0.3);
+}
+
+/* Titolo della modale */
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ff00ff;
+}
+
+/* Testo della modale */
+.modal-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+/* Bottone di chiusura */
+.modal-content ion-button {
+  margin-top: 15px;
+  width: 100%;
+}
+
