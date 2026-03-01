@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  --color-maitime-dark: #000046;
+  --color-maitime-darker: #000030;
+  --color-maitime-accent: #FF00FF;
+  --color-maitime-accent-hover: #e600e6;
+}
+
+@theme inline {
+  --color-background: var(--color-maitime-dark);
+  --color-foreground: #ffffff;
+  --color-maitime-dark: #000046;
+  --color-maitime-darker: #000030;
+  --color-maitime-accent: #FF00FF;
+  --color-maitime-accent-hover: #e600e6;
+  --color-maitime-muted: #cccccc;
+  --color-maitime-card: rgba(255, 255, 255, 0.03);
+  --color-maitime-border: rgba(255, 255, 255, 0.1);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-montserrat);
+}
+
+body {
+  background: #000020;
+  color: #ffffff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Montserrat for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+/* Alternating section backgrounds */
+.section-dark {
+  background: #000020;
+}
+
+.section-light {
+  background: linear-gradient(180deg, #000035 0%, #00003a 50%, #000035 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Animated gradient background ── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(
+    135deg,
+    #000020 0%,
+    #000046 25%,
+    #0a0030 50%,
+    #000062 75%,
+    #000020 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* ── Glow effects ── */
+.glow-text {
+  text-shadow: 0 0 20px rgba(255, 0, 255, 0.3),
+    0 0 40px rgba(255, 0, 255, 0.1);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.15),
+    inset 0 0 15px rgba(255, 0, 255, 0.05);
+}
+
+.glow-button {
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Glassmorphism ── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 0, 255, 0.5);
+}
+
+/* ── Floating animation for icons ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── Staggered float delays ── */
+.float-delay-1 { animation-delay: 0s; }
+.float-delay-2 { animation-delay: 0.5s; }
+.float-delay-3 { animation-delay: 1s; }
+
+/* ── Selection ── */
+::selection {
+  background: rgba(255, 0, 255, 0.3);
+  color: white;
+}
