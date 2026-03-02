@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HubSpotForm from "@/components/HubSpotForm";
 
 export const metadata: Metadata = {
   title: "Contatti",
@@ -69,16 +70,11 @@ export default function ContattiPage() {
           {/* Right - Other contacts */}
           <div className="flex flex-col gap-8">
             <div className="rounded-2xl border border-maitime-border bg-maitime-card p-8">
-              <h3 className="mb-3 text-xl font-bold">Email</h3>
-              <p className="text-white/70">
+              <h3 className="mb-3 text-xl font-bold">Scrivici</h3>
+              <p className="mb-4 text-white/70">
                 Per domande generali o partnership:
               </p>
-              <a
-                href="mailto:maitime@maitime.ai"
-                className="mt-2 block text-maitime-accent hover:underline"
-              >
-                maitime@maitime.ai
-              </a>
+              <HubSpotForm />
             </div>
 
             <div className="rounded-2xl border border-maitime-border bg-maitime-card p-8">
