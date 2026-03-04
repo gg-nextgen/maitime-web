@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ManageCookieButton } from "./ManageCookieButton";
 
 export default function Footer() {
   return (
@@ -88,6 +89,7 @@ export default function Footer() {
             <Link href="/cookie-policy" className="hover:text-white/80">
               Cookie Policy
             </Link>
+            <ManageCookieButton />
           </div>
           <p>&copy; {new Date().getFullYear()} G&G NextGen - P.IVA 02144530439</p>
         </div>

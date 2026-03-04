@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FloatingChat } from "@/components/ClientHome";
+import CookieBanner from "@/components/CookieBanner";
+import ConditionalAnalytics from "@/components/ConditionalAnalytics";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -107,8 +108,9 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingChat />
+        <CookieBanner />
+        <ConditionalAnalytics />
       </body>
-      <GoogleAnalytics gaId="G-V7L3SGZNLB" />
     </html>
   );
 }
