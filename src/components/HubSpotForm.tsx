@@ -56,7 +56,7 @@ declare global {
           portalId: string;
           formId: string;
           region: string;
-          target: HTMLElement;
+          target: string | HTMLElement;
         }) => void;
       };
     };
