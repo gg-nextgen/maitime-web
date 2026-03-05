@@ -41,6 +41,29 @@ const resources: Resource[] = [
       "Imprenditori e responsabili commerciali di PMI italiane che vogliono passare dalle decisioni \"a sensazione\" a un controllo commerciale basato sui dati.",
     hubspotFormId: "b17a54a3-c917-4481-90b6-cd38a15e5a7f",
   },
+  {
+    slug: "segmentazione-clienti-pmi",
+    title: "Segmentazione Clienti per PMI",
+    subtitle: "Come Identificare i Clienti più Redditizi",
+    description:
+      "Il 20% dei tuoi clienti genera l'80% del fatturato. Sai quali sono? Scopri come segmentare il portafoglio clienti con il modello RFM, la matrice valore/marginalità e strategie d'azione per ogni cluster. Include checklist operative e un metodo in 4 step per partire in 2 settimane.",
+    date: "2026-03-05",
+    type: "ebook",
+    tags: ["Gestione Clienti", "Vendite", "RFM", "PMI"],
+    coverImage: "/assets/resources/segmentazione-clienti-pmi-cover.webp",
+    pages: 16,
+    highlights: [
+      "Perché trattare tutti i clienti allo stesso modo è costoso",
+      "Il modello RFM: Recency, Frequency, Monetary e i 5 cluster",
+      "Segmentazione per marginalità, settore e comportamento",
+      "Strategie d'azione specifiche per ogni cluster (Campioni, A rischio, Promettenti, Standard, Dormienti)",
+      "Metodo in 4 step per segmentare il portafoglio in 2 settimane",
+      "Checklist operative e piano d'azione per cluster",
+    ],
+    targetAudience:
+      "Imprenditori e responsabili commerciali di PMI italiane che vogliono smettere di trattare tutti i clienti allo stesso modo e allocare tempo, budget e attenzione dove producono ritorno.",
+    hubspotFormId: "8d8aa6b8-45a8-471a-bdfd-33cc9fe6905e",
+  },
 ];
 
 export function getAllResources(): Resource[] {
