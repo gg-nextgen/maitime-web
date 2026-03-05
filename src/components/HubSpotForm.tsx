@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 
 interface HubSpotFormProps {
   formId: string;
@@ -13,7 +13,8 @@ export default function HubSpotForm({
   portalId = "145692411",
   region = "eu1",
 }: HubSpotFormProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const reactId = useId();
+  const containerId = `hs-form-${reactId.replace(/:/g, "")}`;
   const loadedRef = useRef(false);
 
   useEffect(() => {
@@ -21,12 +22,12 @@ export default function HubSpotForm({
     loadedRef.current = true;
 
     const createForm = () => {
-      if (containerRef.current && window.hbspt) {
+      if (window.hbspt) {
         window.hbspt.forms.create({
           portalId,
           formId,
           region,
-          target: containerRef.current,
+          target: `#${containerId}`,
         });
       }
     };
@@ -42,9 +43,9 @@ export default function HubSpotForm({
     script.async = true;
     script.onload = createForm;
     document.head.appendChild(script);
-  }, [formId, portalId, region]);
+  }, [formId, portalId, region, containerId]);
 
-  return <div ref={containerRef} />;
+  return <div id={containerId} />;
 }
 
 declare global {

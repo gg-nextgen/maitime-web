@@ -78,7 +78,7 @@ export default async function ResourcePage({ params }: PageProps) {
             {/* Left: Cover + Info */}
             <div className="lg:col-span-2">
               {/* Cover */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-xl border border-maitime-border shadow-2xl shadow-maitime-accent/10">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-maitime-border shadow-2xl shadow-maitime-accent/10">
                 <Image
                   src={resource.coverImage}
                   alt={resource.title}
