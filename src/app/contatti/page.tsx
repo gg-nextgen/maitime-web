@@ -74,7 +74,7 @@ export default function ContattiPage() {
               <p className="mb-4 text-white/70">
                 Per domande generali o partnership:
               </p>
-              <HubSpotForm />
+              <HubSpotForm formId="400976a0-44c4-4275-bff2-7ce7cbc19de5" />
             </div>
 
             <div className="rounded-2xl border border-maitime-border bg-maitime-card p-8">

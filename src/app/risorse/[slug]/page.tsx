@@ -1,56 +1,65 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import { getAllResources, getResourceBySlug } from "@/lib/resources";
+import HubSpotForm from "@/components/HubSpotForm";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const articles = getAllArticles();
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
+  const resources = getAllResources();
+  return resources.map((r) => ({ slug: r.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const resource = getResourceBySlug(slug);
 
-  if (!article) {
-    return { title: "Articolo Non Trovato" };
+  if (!resource) {
+    return { title: "Risorsa Non Trovata" };
   }
 
   return {
-    title: article.title,
-    description: article.description,
+    title: `${resource.title} | Risorsa Gratuita`,
+    description: resource.description,
     alternates: {
-      canonical: `https://www.maitime.ai/risorse/${article.slug}`,
+      canonical: `https://www.maitime.ai/risorse/${resource.slug}`,
     },
     openGraph: {
-      title: article.title,
-      description: article.description,
+      title: resource.title,
+      description: resource.description,
       type: "article",
-      publishedTime: article.date,
+      publishedTime: resource.date,
       authors: ["G&G NextGen"],
+      images: [
+        {
+          url: `https://www.maitime.ai${resource.coverImage}`,
+          width: 1200,
+          height: 630,
+          alt: resource.title,
+        },
+      ],
     },
   };
 }
 
-export default async function ArticlePage({ params }: PageProps) {
+export default async function ResourcePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const resource = getResourceBySlug(slug);
 
-  if (!article) {
+  if (!resource) {
     notFound();
   }
 
   return (
     <>
-      {/* Article Header */}
       <article className="px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
           {/* Breadcrumb */}
           <nav className="mb-8 text-sm text-white/50">
             <Link href="/" className="hover:text-white/80">
@@ -61,114 +70,148 @@ export default async function ArticlePage({ params }: PageProps) {
               Risorse
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-white/70">{article.title}</span>
+            <span className="text-white/70">{resource.title}</span>
           </nav>
 
-          {/* Tags */}
-          <div className="mb-4 flex flex-wrap gap-2">
-            {article.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-maitime-accent/10 px-3 py-1 text-xs text-maitime-accent"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          {/* Main Layout: 2 columns on desktop */}
+          <div className="grid gap-12 lg:grid-cols-5">
+            {/* Left: Cover + Info */}
+            <div className="lg:col-span-2">
+              {/* Cover */}
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl border border-maitime-border shadow-2xl shadow-maitime-accent/10">
+                <Image
+                  src={resource.coverImage}
+                  alt={resource.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  priority
+                />
+              </div>
 
-          {/* Title */}
-          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
-            {article.title}
-          </h1>
+              {/* Quick Info */}
+              <div className="mt-6 space-y-3">
+                <div className="flex items-center gap-3 text-sm text-white/60">
+                  <svg
+                    className="h-5 w-5 text-maitime-accent"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                    />
+                  </svg>
+                  <span className="uppercase tracking-wide">
+                    {resource.type}
+                  </span>
+                  {resource.pages && (
+                    <>
+                      <span className="text-white/30">|</span>
+                      <span>{resource.pages} pagine</span>
+                    </>
+                  )}
+                </div>
 
-          {/* Meta */}
-          <div className="mt-4 flex items-center gap-4 text-sm text-white/50">
-            <time dateTime={article.date}>
-              {new Date(article.date).toLocaleDateString("it-IT", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </time>
-            <span>&middot;</span>
-            <span>{article.readingTime} di lettura</span>
-          </div>
+                <div className="flex items-center gap-3 text-sm text-white/60">
+                  <svg
+                    className="h-5 w-5 text-maitime-accent"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+                    />
+                  </svg>
+                  <span>
+                    {new Date(resource.date).toLocaleDateString("it-IT", {
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                </div>
 
-          {/* Content */}
-          <div className="prose-maitime mt-12">
-            {article.content
-              .trim()
-              .split("\n")
-              .map((line, i) => {
-                const trimmed = line.trim();
-                if (!trimmed) return <br key={i} />;
-                if (trimmed.startsWith("## "))
-                  return (
-                    <h2
-                      key={i}
-                      className="mb-4 mt-10 text-2xl font-bold text-white"
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {resource.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-maitime-accent/10 px-3 py-1 text-xs text-maitime-accent"
                     >
-                      {trimmed.replace("## ", "")}
-                    </h2>
-                  );
-                if (trimmed.startsWith("### "))
-                  return (
-                    <h3
-                      key={i}
-                      className="mb-3 mt-8 text-xl font-bold text-maitime-accent"
-                    >
-                      {trimmed.replace("### ", "")}
-                    </h3>
-                  );
-                if (trimmed.startsWith("- "))
-                  return (
-                    <li key={i} className="ml-6 list-disc text-white/80">
-                      {trimmed.replace("- ", "")}
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content + Form */}
+            <div className="lg:col-span-3">
+              <h1 className="text-3xl font-bold leading-tight sm:text-4xl">
+                {resource.title}
+              </h1>
+              <p className="mt-2 text-lg text-maitime-accent">
+                {resource.subtitle}
+              </p>
+
+              <p className="mt-6 leading-relaxed text-white/80">
+                {resource.description}
+              </p>
+
+              {/* Target Audience */}
+              <div className="mt-8 rounded-lg border border-maitime-accent/20 bg-maitime-accent/5 p-5">
+                <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-maitime-accent">
+                  Per chi è questa guida
+                </h3>
+                <p className="text-sm leading-relaxed text-white/70">
+                  {resource.targetAudience}
+                </p>
+              </div>
+
+              {/* What you'll learn */}
+              <div className="mt-8">
+                <h3 className="mb-4 text-xl font-bold">
+                  Cosa troverai all&apos;interno
+                </h3>
+                <ul className="space-y-3">
+                  {resource.highlights.map((highlight, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-maitime-accent/20 text-xs font-bold text-maitime-accent">
+                        {i + 1}
+                      </span>
+                      <span className="text-white/80">{highlight}</span>
                     </li>
-                  );
-                if (trimmed.startsWith("**") && trimmed.endsWith("**"))
-                  return (
-                    <p key={i} className="mt-4 font-bold text-white">
-                      {trimmed.replace(/\*\*/g, "")}
-                    </p>
-                  );
-                if (trimmed.startsWith("**"))
-                  return (
-                    <p key={i} className="mt-2 text-white/80 leading-relaxed">
-                      <strong className="text-white">
-                        {trimmed.match(/\*\*(.*?)\*\*/)?.[1]}
-                      </strong>
-                      {trimmed.replace(/\*\*.*?\*\*/, "")}
-                    </p>
-                  );
-                return (
-                  <p key={i} className="mt-2 text-white/80 leading-relaxed">
-                    {trimmed}
-                  </p>
-                );
-              })}
-          </div>
+                  ))}
+                </ul>
+              </div>
 
-          {/* CTA at end of article */}
-          <div className="mt-16 rounded-xl border border-maitime-accent/30 bg-maitime-card p-8 text-center">
-            <h3 className="text-xl font-bold">
-              Vuoi Vedere Come MAITIME Può Aiutare la Tua Azienda?
-            </h3>
-            <p className="mt-2 text-white/70">
-              Prenota una demo gratuita di 30 minuti.
-            </p>
-            <a
-              href="https://gg-nextgen.ai/meetings/egiardini"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-lg border border-white bg-gradient-to-r from-[#000062] to-maitime-accent px-8 py-3 font-bold text-white transition-transform hover:scale-105"
-            >
-              Prenota una Demo Gratuita &rarr;
-            </a>
+              {/* HubSpot Form Placeholder */}
+              <div
+                id="download-form"
+                className="mt-10 rounded-xl border border-maitime-accent/30 bg-gradient-to-br from-maitime-accent/5 to-transparent p-8"
+              >
+                <h3 className="mb-2 text-xl font-bold">
+                  Scarica l&apos;eBook Gratuito
+                </h3>
+                <p className="mb-6 text-sm text-white/60">
+                  Inserisci la tua email e riceverai subito il link per il
+                  download.
+                </p>
+
+                <HubSpotForm formId={resource.hubspotFormId} />
+              </div>
+            </div>
           </div>
 
           {/* Back link */}
-          <div className="mt-8">
+          <div className="mt-12">
             <Link
               href="/risorse"
               className="text-maitime-accent underline underline-offset-4 hover:text-maitime-accent-hover"
@@ -179,16 +222,16 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
       </article>
 
-      {/* JSON-LD for Article */}
+      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Article",
-            headline: article.title,
-            description: article.description,
-            datePublished: article.date,
+            "@type": "Book",
+            name: resource.title,
+            description: resource.description,
+            datePublished: resource.date,
             author: {
               "@type": "Organization",
               name: "G&G NextGen",
@@ -200,6 +243,13 @@ export default async function ArticlePage({ params }: PageProps) {
                 "@type": "ImageObject",
                 url: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
               },
+            },
+            image: `https://www.maitime.ai${resource.coverImage}`,
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "EUR",
+              availability: "https://schema.org/InStock",
             },
           }),
         }}

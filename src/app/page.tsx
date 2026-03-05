@@ -268,7 +268,7 @@ export default function HomePage() {
                 Risorse per la Tua Impresa
               </h2>
               <p className="mt-2 text-white/50">
-                Guide e consigli pratici per imprenditori.
+                eBook e materiali gratuiti per imprenditori.
               </p>
             </div>
             <Link
@@ -279,39 +279,33 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "Come l'AI Può Aiutare la Tua PMI",
-                excerpt:
-                  "Guida pratica per imprenditori che vogliono iniziare a usare l'intelligenza artificiale.",
-                slug: "come-ai-puo-aiutare-pmi",
-              },
-              {
-                title: "5 Segnali Che un Cliente Non Ti Pagherà",
-                excerpt:
-                  "Impara a riconoscere i segnali d'allarme nei comportamenti dei clienti.",
-                slug: "segnali-cliente-insolvente",
-              },
-              {
-                title: "Automazione Email: Risparmiare 10 Ore",
-                excerpt:
-                  "Scopri come automatizzare le comunicazioni aziendali senza perdere il tocco personale.",
-                slug: "automazione-email-aziendali",
-              },
-            ].map((article, i) => (
-              <GlowCard key={article.slug} delay={i * 0.1}>
-                <Link href={`/risorse/${article.slug}`} className="block">
-                  <h3 className="mb-3 text-lg font-bold transition-colors group-hover:text-[#FF00FF]">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-white/50">{article.excerpt}</p>
-                  <span className="mt-4 inline-block text-sm text-[#FF00FF]">
-                    Leggi di più &rarr;
+          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 max-w-2xl mx-auto">
+            <GlowCard delay={0}>
+              <Link href="/risorse/guida-controllo-commerciale-pmi" className="flex flex-col sm:flex-row gap-6 items-center">
+                <div className="relative w-full sm:w-40 aspect-[3/4] flex-shrink-0 overflow-hidden rounded-lg">
+                  <img
+                    src="/assets/resources/guida-controllo-commerciale-cover.webp"
+                    alt="Guida Controllo Commerciale per PMI"
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute top-2 left-2 rounded-full bg-[#FF00FF]/90 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
+                    ebook
                   </span>
-                </Link>
-              </GlowCard>
-            ))}
+                </div>
+                <div>
+                  <h3 className="mb-2 text-lg font-bold transition-colors group-hover:text-[#FF00FF]">
+                    La Guida Completa al Controllo Commerciale per PMI
+                  </h3>
+                  <p className="text-sm text-white/50">Dashboard, Clienti e Prodotti sotto un&apos;unica lente. Dalle decisioni &quot;a sensazione&quot; ai dati.</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#FF00FF]">
+                    Scarica gratis
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            </GlowCard>
           </div>
 
           <div className="mt-8 text-center sm:hidden">

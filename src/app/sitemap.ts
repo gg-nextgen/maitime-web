@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
-import { getAllArticles } from "@/lib/articles";
+import { getAllResources } from "@/lib/resources";
 import { getAllModules } from "@/lib/modules";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const articles = getAllArticles();
+  const resources = getAllResources();
   const modules = getAllModules();
 
-  const articleEntries: MetadataRoute.Sitemap = articles.map((article) => ({
-    url: `https://www.maitime.ai/risorse/${article.slug}`,
-    lastModified: new Date(article.date),
+  const resourceEntries: MetadataRoute.Sitemap = resources.map((r) => ({
+    url: `https://www.maitime.ai/risorse/${r.slug}`,
+    lastModified: new Date(r.date),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
@@ -70,6 +70,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     ...moduleEntries,
-    ...articleEntries,
+    ...resourceEntries,
   ];
 }
