@@ -70,11 +70,11 @@ export async function getSessions(
     `SELECT COUNT(*) as total FROM chat_sessions ${where}`,
     params
   );
-  const total = (countRows as { total: number }[])[0].total;
+  const total = Number((countRows as { total: number }[])[0].total);
 
   const [rows] = await pool.execute(
-    `SELECT * FROM chat_sessions ${where} ORDER BY last_message_at DESC LIMIT ? OFFSET ?`,
-    [...params, limit, offset]
+    `SELECT * FROM chat_sessions ${where} ORDER BY last_message_at DESC LIMIT ${Number(limit)} OFFSET ${Number(offset)}`  ,
+    params
   );
 
   return { sessions: rows as ChatSession[], total };
