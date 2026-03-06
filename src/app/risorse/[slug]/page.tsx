@@ -83,7 +83,7 @@ export default async function ResourcePage({ params }: PageProps) {
                   src={resource.coverImage}
                   alt={resource.title}
                   fill
-                  className="object-cover"
+                  className="object-cover object-left"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   priority
                 />
