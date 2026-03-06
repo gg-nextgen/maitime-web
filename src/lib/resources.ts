@@ -64,6 +64,52 @@ const resources: Resource[] = [
       "Imprenditori e responsabili commerciali di PMI italiane che vogliono smettere di trattare tutti i clienti allo stesso modo e allocare tempo, budget e attenzione dove producono ritorno.",
     hubspotFormId: "8d8aa6b8-45a8-471a-bdfd-33cc9fe6905e",
   },
+  {
+    slug: "supply-chain-sotto-controllo",
+    title: "Supply Chain sotto Controllo",
+    subtitle: "Eliminare Sprechi e Ritardi",
+    description:
+      "Dalla merce in arrivo al magazzino: la guida operativa per PMI che vogliono tracciare tutto. Scopri come controllare fornitori, ordini clienti, distinta base e magazzino con un flusso integrato. Include checklist operative per ogni area e glossario.",
+    date: "2026-03-06",
+    type: "ebook",
+    tags: ["Supply Chain", "Produzione", "Magazzino", "PMI"],
+    coverImage: "/assets/resources/supply-chain-sotto-controllo-cover.webp",
+    pages: 13,
+    highlights: [
+      "I 5 segnali d'allarme di una supply chain non tracciata",
+      "Merce in arrivo: tracciamento consegne e storico fornitori",
+      "Ordini clienti: tracciabilità digitale dal commerciale alla produzione",
+      "Distinta base digitale e gestione magazzino integrata",
+      "Il flusso integrato: dal fornitore al cliente in 5 step",
+      "Checklist operative per merce, ordini, distinta e magazzino",
+    ],
+    targetAudience:
+      "Imprenditori e responsabili di produzione di PMI manifatturiere italiane che vogliono eliminare ritardi, sprechi e perdite di informazioni nella supply chain.",
+    hubspotFormId: "e0bb47af-8a32-4105-a89f-05d94fba3a2b",
+  },
+  {
+    slug: "dead-stock-quanto-ti-costa",
+    title: "Dead Stock: Quanto Ti Costa",
+    subtitle: "Il Metodo in 5 Step per PMI Produttive",
+    description:
+      "Ogni metro quadro occupato da merce ferma è denaro che non lavora per te. Scopri cos'è il dead stock, quanto costa davvero (25-30% del valore ogni anno), come identificarlo con indice di rotazione e analisi ABC, e il metodo in 5 step per eliminarlo. Include checklist operative e esercizio pratico per calcolare il costo del tuo dead stock.",
+    date: "2026-03-06",
+    type: "ebook",
+    tags: ["Magazzino", "Dead Stock", "Produzione", "PMI"],
+    coverImage: "/assets/resources/dead-stock-quanto-ti-costa-cover.webp",
+    pages: 17,
+    highlights: [
+      "Cos'è il dead stock e le 4 forme in cui si nasconde",
+      "Il conto vero: capitale immobilizzato, stoccaggio, svalutazione e costo opportunità",
+      "Come identificarlo: indice di rotazione, soglie di movimentazione e analisi ABC",
+      "I 5 step per eliminarlo: censimento, triage, recupero, riutilizzo, smaltimento",
+      "Prevenire è meglio: alert automatici, revisione catalogo e regole d'ingresso",
+      "Checklist operative per identificazione, eliminazione, prevenzione e monitoraggio",
+    ],
+    targetAudience:
+      "Imprenditori e responsabili di magazzino di PMI manifatturiere italiane che vogliono liberare spazio, recuperare capitale e smettere di pagare per merce che non si muove.",
+    hubspotFormId: "9e16bf4c-748c-4f49-b669-606230c5a173",
+  },
 ];
 
 export function getAllResources(): Resource[] {
