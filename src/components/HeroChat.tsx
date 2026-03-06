@@ -1,14 +1,12 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { TextStreamChatTransport } from "ai";
 import type { UIMessage } from "ai";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-
-const transport = new TextStreamChatTransport({ api: "/api/chat" });
+import { createChatTransport } from "@/lib/chat-transport";
 
 const welcomeMessage: UIMessage = {
   id: "welcome",
@@ -27,6 +25,7 @@ export default function HeroChat() {
   const [showTyping, setShowTyping] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const transport = useMemo(() => createChatTransport("hero"), []);
 
   const { messages, sendMessage, status, error } = useChat({
     transport,

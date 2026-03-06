@@ -1,5 +1,6 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
+import { saveMessage } from "@/lib/chat-db";
 
 const anthropic = createAnthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -77,7 +78,7 @@ Il cuore di MAITIME è la Chat con il Direttore: un'interfaccia conversazionale 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log("[CHAT API] Request received, messages count:", body.messages?.length);
+    const sessionId = req.headers.get("x-session-id");
 
     // Filter out the static welcome message and convert UIMessage (parts) → CoreMessage (content)
     const messages = (body.messages ?? [])
@@ -92,17 +93,28 @@ export async function POST(req: Request) {
             .join(""),
       }));
 
-    console.log("[CHAT API] Filtered messages count:", messages.length);
-    console.log("[CHAT API] Last message:", JSON.stringify(messages.at(-1)));
+    // Save the last user message to DB
+    const lastUserMsg = messages.filter((m: { role: string }) => m.role === "user").at(-1);
+    if (sessionId && lastUserMsg) {
+      saveMessage(sessionId, "user", lastUserMsg.content).catch((err) =>
+        console.error("[CHAT DB] Error saving user message:", err)
+      );
+    }
 
     const result = streamText({
       model: anthropic("claude-sonnet-4-20250514"),
       system: SYSTEM_PROMPT,
       messages,
       maxOutputTokens: 1024,
+      async onFinish({ text }) {
+        if (sessionId && text) {
+          saveMessage(sessionId, "assistant", text).catch((err) =>
+            console.error("[CHAT DB] Error saving assistant message:", err)
+          );
+        }
+      },
     });
 
-    console.log("[CHAT API] streamText called, returning response...");
     return result.toTextStreamResponse();
   } catch (error) {
     console.error("[CHAT API] ERROR:", error);
