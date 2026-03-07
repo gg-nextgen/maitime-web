@@ -179,6 +179,29 @@ const resources: Resource[] = [
       "Imprenditori e titolari di PMI italiane che vogliono smettere di rincorrere le urgenze e trasformare gli obiettivi strategici in risultati concreti, con un metodo strutturato e supportato dall'AI.",
     hubspotFormId: "a4a9e39c-1939-4914-b083-242ee1dd2e0a",
   },
+  {
+    slug: "il-direttore-digitale",
+    title: "Il Direttore Digitale",
+    subtitle: "Come Gestire la Tua PMI con il Linguaggio Naturale",
+    description:
+      "Hai tutti i dati, ma per una risposta semplice servono 15 minuti. Per una complessa, ore. Scopri la Chat Direttore: un interlocutore AI che interroga, analizza e agisce sui tuoi dati aziendali in linguaggio naturale. Non solo risposte — crea task, invia promemoria, imposta alert e genera report. Include esempi reali per ogni reparto, checklist operative e glossario.",
+    date: "2026-03-07",
+    type: "ebook",
+    tags: ["Chat AI", "Direttore Digitale", "NLP", "PMI"],
+    coverImage: "/assets/resources/il-direttore-digitale-cover.webp",
+    pages: 15,
+    highlights: [
+      "Il paradosso dei dati inaccessibili: troppe informazioni, poche risposte",
+      "La Chat Direttore: interrogare, analizzare e agire in linguaggio naturale",
+      "Esempi reali per ogni reparto: vendite, produzione, HR e strategia",
+      "Non solo domande: creare task, promemoria, alert e report dalla chat",
+      "Il cambio di paradigma: da navigare i dati a conversare con l'azienda",
+      "Checklist operative per primi passi, azioni operative, adozione del team e ottimizzazione",
+    ],
+    targetAudience:
+      "Imprenditori e titolari di PMI italiane che vogliono smettere di cercare informazioni nei software e iniziare a fare domande alla propria azienda in italiano, ottenendo risposte in secondi.",
+    hubspotFormId: "b02852be-4ef3-453d-88af-877b59ce59b9",
+  },
 ];
 
 export function getAllResources(): Resource[] {
