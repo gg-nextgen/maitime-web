@@ -1,5 +1,7 @@
 import {
   getSessionMessages,
+  getLeadBySessionId,
+  getLeadSessions,
   updateSessionStatus,
   updateSessionNotes,
 } from "@/lib/chat-db";
@@ -18,7 +20,12 @@ export async function GET(req: Request, { params }: RouteParams) {
 
   try {
     const messages = await getSessionMessages(id);
-    return Response.json({ messages });
+    const lead = await getLeadBySessionId(id);
+    let leadSessions = null;
+    if (lead && lead.sessions_count > 1) {
+      leadSessions = await getLeadSessions(lead.id);
+    }
+    return Response.json({ messages, lead, leadSessions });
   } catch (error) {
     console.error("[ADMIN] Error fetching messages:", error);
     return Response.json({ error: "Server error" }, { status: 500 });

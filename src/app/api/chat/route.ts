@@ -213,6 +213,9 @@ export async function POST(req: Request) {
 
           if (lead.sessions_count > 1) {
             systemPrompt += `\n\nNota: questo utente ha già visitato il sito ${lead.sessions_count} volte. È un contatto ricorrente — mostra che lo riconosci, es. "Bentornato!" se è il primo messaggio della conversazione.`;
+            if (!lead.email) {
+              systemPrompt += ` Questo visitatore è tornato più volte ma non ha ancora lasciato la sua email. Cerca di ottenerla prima delle altre informazioni, proponendo un motivo concreto (es. invio di una guida, aggiornamenti, dettagli personalizzati).`;
+            }
           }
         }
       } catch (err) {

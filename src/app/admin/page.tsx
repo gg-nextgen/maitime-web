@@ -12,6 +12,7 @@ interface ChatSession {
   messages_count: number;
   status: "active" | "completed" | "lead";
   notes: string | null;
+  lead_id: string | null;
 }
 
 interface ChatMessage {
@@ -19,6 +20,19 @@ interface ChatMessage {
   role: "user" | "assistant";
   content: string;
   created_at: string;
+}
+
+interface LeadData {
+  id: string;
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+  company_name: string | null;
+  company_type: string | null;
+  problems: string | null;
+  location: string | null;
+  ip_address: string | null;
+  sessions_count: number;
 }
 
 export default function AdminPage() {
@@ -29,6 +43,9 @@ export default function AdminPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedSession, setSelectedSession] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [lead, setLead] = useState<LeadData | null>(null);
+  const [leadSessions, setLeadSessions] = useState<ChatSession[] | null>(null);
+  const [viewingSessionId, setViewingSessionId] = useState<string | null>(null);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [error, setError] = useState("");
 
@@ -71,6 +88,26 @@ export default function AdminPage() {
 
   async function loadMessages(sessionId: string) {
     setSelectedSession(sessionId);
+    setViewingSessionId(sessionId);
+    setLoadingMessages(true);
+    try {
+      const res = await fetch(`/api/admin/sessions/${sessionId}`, {
+        headers: { "x-admin-password": password },
+      });
+      const data = await res.json();
+      setMessages(data.messages);
+      setLead(data.lead ?? null);
+      setLeadSessions(data.leadSessions ?? null);
+    } catch {
+      setMessages([]);
+      setLead(null);
+      setLeadSessions(null);
+    }
+    setLoadingMessages(false);
+  }
+
+  async function loadSessionMessages(sessionId: string) {
+    setViewingSessionId(sessionId);
     setLoadingMessages(true);
     try {
       const res = await fetch(`/api/admin/sessions/${sessionId}`, {
@@ -120,19 +157,23 @@ export default function AdminPage() {
     });
   }
 
-  function getFirstUserMessage(session: ChatSession): string {
-    return `${session.messages_count} messaggi`;
+  function getStatusLabel(session: ChatSession) {
+    if (session.status === "lead") return "Lead";
+    if (session.lead_id) return "Visitor";
+    return session.status === "completed" ? "Completed" : "Active";
   }
 
-  function getStatusColor(status: string) {
-    switch (status) {
-      case "lead":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "completed":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      default:
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+  function getStatusColor(session: ChatSession) {
+    if (session.status === "lead") {
+      return "bg-green-500/20 text-green-400 border-green-500/30";
     }
+    if (session.lead_id) {
+      return "bg-purple-500/20 text-purple-400 border-purple-500/30";
+    }
+    if (session.status === "completed") {
+      return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+    }
+    return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
   }
 
   function getOriginLabel(origin: string | null) {
@@ -202,17 +243,23 @@ export default function AdminPage() {
 
         {/* Filters */}
         <div className="mb-6 flex gap-2">
-          {["all", "active", "completed", "lead"].map((s) => (
+          {[
+            { key: "all", label: "Tutte" },
+            { key: "lead", label: "Lead" },
+            { key: "visitor", label: "Visitor" },
+            { key: "active", label: "Active" },
+            { key: "completed", label: "Completed" },
+          ].map(({ key, label }) => (
             <button
-              key={s}
-              onClick={() => setStatusFilter(s)}
-              className={`rounded-full px-4 py-1.5 text-sm capitalize transition-colors ${
-                statusFilter === s
+              key={key}
+              onClick={() => setStatusFilter(key)}
+              className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
+                statusFilter === key
                   ? "bg-[#FF00FF]/20 text-[#FF00FF]"
                   : "text-white/50 hover:text-white/80"
               }`}
             >
-              {s === "all" ? "Tutte" : s}
+              {label}
             </button>
           ))}
         </div>
@@ -239,16 +286,16 @@ export default function AdminPage() {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <span
-                        className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase ${getStatusColor(session.status)}`}
+                        className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase ${getStatusColor(session)}`}
                       >
-                        {session.status}
+                        {getStatusLabel(session)}
                       </span>
                       <span className="text-xs text-white/40">
                         {getOriginLabel(session.page_origin)}
                       </span>
                     </div>
                     <p className="mt-1.5 text-sm text-white/70">
-                      {getFirstUserMessage(session)}
+                      {session.messages_count} messaggi
                     </p>
                   </div>
                   <span className="shrink-0 text-xs text-white/30">
@@ -267,69 +314,156 @@ export default function AdminPage() {
               </div>
             )}
             {selectedSession && (
-              <div className="rounded-xl border border-white/10 bg-white/[0.02]">
-                {/* Session actions */}
-                <div className="flex items-center gap-2 border-b border-white/10 p-4">
-                  <span className="text-sm text-white/50">Stato:</span>
-                  {(["active", "completed", "lead"] as const).map((s) => {
-                    const currentSession = sessions.find(
-                      (sess) => sess.id === selectedSession
-                    );
-                    return (
-                      <button
-                        key={s}
-                        onClick={() => updateStatus(selectedSession, s)}
-                        className={`rounded-full border px-3 py-1 text-xs capitalize transition-colors ${
-                          currentSession?.status === s
-                            ? getStatusColor(s)
-                            : "border-white/10 text-white/30 hover:text-white/60"
-                        }`}
-                      >
-                        {s}
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="space-y-4">
+                {/* Lead data card */}
+                {lead && (
+                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                    <div className="mb-3 flex items-center justify-between">
+                      <h3 className="text-sm font-bold text-white/80">
+                        {lead.email ? "Dati Lead" : "Dati Visitor"}
+                      </h3>
+                      <span className="text-xs text-white/40">
+                        {lead.sessions_count} {lead.sessions_count === 1 ? "sessione" : "sessioni"}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      {lead.first_name && (
+                        <div>
+                          <span className="text-white/40">Nome: </span>
+                          <span className="text-white/80">{lead.first_name} {lead.last_name ?? ""}</span>
+                        </div>
+                      )}
+                      {lead.email && (
+                        <div>
+                          <span className="text-white/40">Email: </span>
+                          <span className="text-green-400">{lead.email}</span>
+                        </div>
+                      )}
+                      {lead.company_name && (
+                        <div>
+                          <span className="text-white/40">Azienda: </span>
+                          <span className="text-white/80">{lead.company_name}</span>
+                        </div>
+                      )}
+                      {lead.company_type && (
+                        <div>
+                          <span className="text-white/40">Settore: </span>
+                          <span className="text-white/80">{lead.company_type}</span>
+                        </div>
+                      )}
+                      {lead.location && (
+                        <div>
+                          <span className="text-white/40">Località: </span>
+                          <span className="text-white/80">{lead.location}</span>
+                        </div>
+                      )}
+                      {lead.ip_address && (
+                        <div>
+                          <span className="text-white/40">IP: </span>
+                          <span className="text-white/80">{lead.ip_address}</span>
+                        </div>
+                      )}
+                      {lead.problems && (
+                        <div className="col-span-2">
+                          <span className="text-white/40">Problemi: </span>
+                          <span className="text-white/80">{lead.problems}</span>
+                        </div>
+                      )}
+                    </div>
 
-                {/* Messages */}
-                <div className="max-h-[500px] overflow-y-auto p-4">
-                  {loadingMessages && (
-                    <p className="text-center text-white/40">Caricamento...</p>
-                  )}
-                  <div className="space-y-3">
-                    {messages.map((msg) => (
-                      <div
-                        key={msg.id}
-                        className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                      >
-                        <div
-                          className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
-                            msg.role === "user"
-                              ? "bg-[#5B21B6]/30 text-white"
-                              : "bg-white/[0.06] text-white/80"
-                          }`}
-                        >
-                          <p className="whitespace-pre-wrap">{msg.content}</p>
-                          <p className="mt-1 text-[10px] text-white/30">
-                            {formatDate(msg.created_at)}
-                          </p>
+                    {/* Other sessions from same lead */}
+                    {leadSessions && leadSessions.length > 1 && (
+                      <div className="mt-3 border-t border-white/10 pt-3">
+                        <p className="mb-2 text-xs font-bold text-white/50">Sessioni di questo contatto:</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {leadSessions.map((ls) => (
+                            <button
+                              key={ls.id}
+                              onClick={() => loadSessionMessages(ls.id)}
+                              className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
+                                viewingSessionId === ls.id
+                                  ? "border-[#FF00FF]/40 bg-[#FF00FF]/10 text-[#FF00FF]"
+                                  : "border-white/10 text-white/50 hover:text-white/80"
+                              }`}
+                            >
+                              {formatDate(ls.started_at)} ({ls.messages_count} msg)
+                            </button>
+                          ))}
                         </div>
                       </div>
-                    ))}
+                    )}
                   </div>
-                </div>
+                )}
 
-                {/* Notes */}
-                <div className="border-t border-white/10 p-4">
-                  <textarea
-                    placeholder="Note su questa conversazione..."
-                    defaultValue={
-                      sessions.find((s) => s.id === selectedSession)?.notes ?? ""
-                    }
-                    onBlur={(e) => saveNotes(selectedSession, e.target.value)}
-                    className="w-full rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white/70 outline-none placeholder:text-white/20 focus:ring-1 focus:ring-[#FF00FF]/30"
-                    rows={2}
-                  />
+                {/* Chat messages */}
+                <div className="rounded-xl border border-white/10 bg-white/[0.02]">
+                  {/* Session actions */}
+                  <div className="flex items-center gap-2 border-b border-white/10 p-4">
+                    <span className="text-sm text-white/50">Stato:</span>
+                    {(["active", "completed", "lead"] as const).map((s) => {
+                      const currentSession = sessions.find(
+                        (sess) => sess.id === selectedSession
+                      );
+                      return (
+                        <button
+                          key={s}
+                          onClick={() => updateStatus(selectedSession, s)}
+                          className={`rounded-full border px-3 py-1 text-xs capitalize transition-colors ${
+                            currentSession?.status === s
+                              ? s === "lead"
+                                ? "bg-green-500/20 text-green-400 border-green-500/30"
+                                : s === "completed"
+                                  ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                                  : "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                              : "border-white/10 text-white/30 hover:text-white/60"
+                          }`}
+                        >
+                          {s}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Messages */}
+                  <div className="max-h-[500px] overflow-y-auto p-4">
+                    {loadingMessages && (
+                      <p className="text-center text-white/40">Caricamento...</p>
+                    )}
+                    <div className="space-y-3">
+                      {messages.map((msg) => (
+                        <div
+                          key={msg.id}
+                          className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                        >
+                          <div
+                            className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
+                              msg.role === "user"
+                                ? "bg-[#5B21B6]/30 text-white"
+                                : "bg-white/[0.06] text-white/80"
+                            }`}
+                          >
+                            <p className="whitespace-pre-wrap">{msg.content}</p>
+                            <p className="mt-1 text-[10px] text-white/30">
+                              {formatDate(msg.created_at)}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Notes */}
+                  <div className="border-t border-white/10 p-4">
+                    <textarea
+                      placeholder="Note su questa conversazione..."
+                      defaultValue={
+                        sessions.find((s) => s.id === selectedSession)?.notes ?? ""
+                      }
+                      onBlur={(e) => saveNotes(selectedSession, e.target.value)}
+                      className="w-full rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white/70 outline-none placeholder:text-white/20 focus:ring-1 focus:ring-[#FF00FF]/30"
+                      rows={2}
+                    />
+                  </div>
                 </div>
               </div>
             )}

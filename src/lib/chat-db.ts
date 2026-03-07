@@ -61,25 +61,41 @@ export async function getSessions(
 ): Promise<{ sessions: ChatSession[]; total: number }> {
   const pool = getPool();
   let where = "";
+  let join = "";
   const params: (string | number)[] = [];
 
-  if (status && status !== "all") {
-    where = "WHERE status = ?";
+  if (status === "visitor") {
+    // Visitor: has lead_id but lead has no email
+    join = "LEFT JOIN chat_leads l ON s.lead_id = l.id";
+    where = "WHERE s.lead_id IS NOT NULL AND (l.email IS NULL OR l.email = '')";
+  } else if (status && status !== "all") {
+    where = `WHERE s.status = ?`;
     params.push(status);
   }
 
   const [countRows] = await pool.execute(
-    `SELECT COUNT(*) as total FROM chat_sessions ${where}`,
+    `SELECT COUNT(*) as total FROM chat_sessions s ${join} ${where}`,
     params
   );
   const total = Number((countRows as { total: number }[])[0].total);
 
   const [rows] = await pool.execute(
-    `SELECT * FROM chat_sessions ${where} ORDER BY last_message_at DESC LIMIT ${Number(limit)} OFFSET ${Number(offset)}`,
+    `SELECT s.* FROM chat_sessions s ${join} ${where} ORDER BY s.last_message_at DESC LIMIT ${Number(limit)} OFFSET ${Number(offset)}`,
     params
   );
 
   return { sessions: rows as ChatSession[], total };
+}
+
+export async function getLeadSessions(
+  leadId: string
+): Promise<ChatSession[]> {
+  const pool = getPool();
+  const [rows] = await pool.execute(
+    `SELECT * FROM chat_sessions WHERE lead_id = ? ORDER BY started_at DESC`,
+    [leadId]
+  );
+  return rows as ChatSession[];
 }
 
 export async function getSessionMessages(
@@ -234,9 +250,12 @@ export async function upsertLead(
     );
   }
 
-  // Mark session as lead
-  await pool.execute(
-    `UPDATE chat_sessions SET status = 'lead' WHERE id = ?`,
-    [sessionId]
-  );
+  // Mark session as lead only if email is present
+  const updatedLead = await getLeadBySessionId(sessionId);
+  if (updatedLead?.email) {
+    await pool.execute(
+      `UPDATE chat_sessions SET status = 'lead' WHERE id = ?`,
+      [sessionId]
+    );
+  }
 }
