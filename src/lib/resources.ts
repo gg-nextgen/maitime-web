@@ -110,6 +110,29 @@ const resources: Resource[] = [
       "Imprenditori e responsabili di magazzino di PMI manifatturiere italiane che vogliono liberare spazio, recuperare capitale e smettere di pagare per merce che non si muove.",
     hubspotFormId: "9e16bf4c-748c-4f49-b669-606230c5a173",
   },
+  {
+    slug: "assistenza-clienti-ai",
+    title: "Assistenza Clienti con l'AI",
+    subtitle: "Chatbot, Lead e Customer Care Automatico",
+    description:
+      "Il tuo sito web lavora per te anche quando dormi? Il 70% dei visitatori se ne va senza lasciare traccia. Scopri come un chatbot AI trasforma il sito in un venditore attivo 24/7: assiste i visitatori, qualifica i lead e prenota appuntamenti. Include confronto form vs chatbot, pannello di configurazione e checklist operative.",
+    date: "2026-03-07",
+    type: "ebook",
+    tags: ["Customer Care", "Chatbot AI", "Lead Generation", "PMI"],
+    coverImage: "/assets/resources/assistenza-clienti-ai-cover.webp",
+    pages: 16,
+    highlights: [
+      "Il problema del sito che non parla: il 70% dei visitatori se ne va in silenzio",
+      "Chatbot AI che assiste, qualifica e converte: schede tecniche, listini, lead e prenotazioni",
+      "Come funziona: dallo snippet alla conversazione configurata in 4 step",
+      "Da visitatore a lead qualificato: riconoscimento intento e raccolta dati naturale",
+      "Assistenza 24/7: ridurre i costi, liberare il team, misurare il ROI",
+      "Checklist operative per setup, customer care, lead generation e monitoraggio",
+    ],
+    targetAudience:
+      "Imprenditori e responsabili commerciali di PMI italiane che vogliono trasformare il proprio sito web da vetrina statica a strumento attivo di assistenza e generazione lead.",
+    hubspotFormId: "ef1b79d3-b2c3-4f8f-9ab8-346e7f6f9866",
+  },
 ];
 
 export function getAllResources(): Resource[] {
