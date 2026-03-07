@@ -156,6 +156,29 @@ const resources: Resource[] = [
       "Imprenditori e responsabili HR di PMI italiane che vogliono passare dalle assunzioni \"a sensazione\" a un processo di selezione e gestione del personale strutturato, basato su dati e profilazione comportamentale.",
     hubspotFormId: "a7eda499-aaf8-4a22-bbde-b0960e681ad7",
   },
+  {
+    slug: "dall-obiettivo-al-risultato",
+    title: "Dall'Obiettivo al Risultato",
+    subtitle: "Il Framework Strategico per PMI che Vogliono Crescere con Metodo",
+    description:
+      "Il 70% degli obiettivi strategici delle PMI non viene raggiunto — non per mancanza di risorse, ma perché non vengono tradotti in azioni. Scopri il framework completo: obiettivi e piani, azioni guidate dall'AI, gestione progetti, agenda sincronizzata con Google Calendar e promemoria automatici. Include checklist operative e glossario.",
+    date: "2026-03-07",
+    type: "ebook",
+    tags: ["Strategia", "Obiettivi", "Project Management", "PMI"],
+    coverImage: "/assets/resources/dall-obiettivo-al-risultato-cover.webp",
+    pages: 16,
+    highlights: [
+      "I 5 segnali della pianificazione senza metodo: obiettivi in testa, piani nel cassetto",
+      "Il framework completo: obiettivi, azioni guidate, progetti, agenda e promemoria",
+      "Azioni guidate dall'AI: definisci l'obiettivo, l'AI propone il piano, tu approvi",
+      "Gestione progetti e agenda bidirezionale con Google Calendar",
+      "Il ruolo del titolare: da \"tengo tutto in testa\" a \"supervisiono il sistema\"",
+      "Checklist operative per obiettivi, azioni, gestione progetti e processo continuo",
+    ],
+    targetAudience:
+      "Imprenditori e titolari di PMI italiane che vogliono smettere di rincorrere le urgenze e trasformare gli obiettivi strategici in risultati concreti, con un metodo strutturato e supportato dall'AI.",
+    hubspotFormId: "a4a9e39c-1939-4914-b083-242ee1dd2e0a",
+  },
 ];
 
 export function getAllResources(): Resource[] {
