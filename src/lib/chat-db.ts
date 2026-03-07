@@ -4,13 +4,14 @@ import { getPool } from "./db";
 export async function createSession(
   ipAddress: string | null,
   userAgent: string | null,
-  pageOrigin: string | null
+  pageOrigin: string | null,
+  leadId: string | null = null
 ): Promise<string> {
   const id = randomUUID();
   const pool = getPool();
   await pool.execute(
-    `INSERT INTO chat_sessions (id, ip_address, user_agent, page_origin) VALUES (?, ?, ?, ?)`,
-    [id, ipAddress, userAgent, pageOrigin]
+    `INSERT INTO chat_sessions (id, ip_address, user_agent, page_origin, lead_id) VALUES (?, ?, ?, ?, ?)`,
+    [id, ipAddress, userAgent, pageOrigin, leadId]
   );
   return id;
 }
@@ -42,6 +43,7 @@ export interface ChatSession {
   messages_count: number;
   status: "active" | "completed" | "lead";
   notes: string | null;
+  lead_id: string | null;
 }
 
 export interface ChatMessage {
@@ -73,7 +75,7 @@ export async function getSessions(
   const total = Number((countRows as { total: number }[])[0].total);
 
   const [rows] = await pool.execute(
-    `SELECT * FROM chat_sessions ${where} ORDER BY last_message_at DESC LIMIT ${Number(limit)} OFFSET ${Number(offset)}`  ,
+    `SELECT * FROM chat_sessions ${where} ORDER BY last_message_at DESC LIMIT ${Number(limit)} OFFSET ${Number(offset)}`,
     params
   );
 
@@ -114,12 +116,71 @@ export async function updateSessionNotes(
 }
 
 export interface LeadData {
+  first_name?: string;
+  last_name?: string;
   email?: string;
   company_name?: string;
   company_type?: string;
   problems?: string;
   location?: string;
+  ip_address?: string;
   additional_info?: string;
+}
+
+const LEAD_FIELDS = [
+  "first_name",
+  "last_name",
+  "email",
+  "company_name",
+  "company_type",
+  "problems",
+  "location",
+  "ip_address",
+  "additional_info",
+] as const;
+
+export async function getLeadById(
+  leadId: string
+): Promise<(LeadData & { id: string; sessions_count: number }) | null> {
+  const pool = getPool();
+  const [rows] = await pool.execute(
+    `SELECT * FROM chat_leads WHERE id = ?`,
+    [leadId]
+  );
+  const results = rows as (LeadData & { id: string; sessions_count: number })[];
+  return results.length > 0 ? results[0] : null;
+}
+
+export async function createLead(
+  ipAddress: string | null
+): Promise<string> {
+  const id = randomUUID();
+  const pool = getPool();
+  await pool.execute(
+    `INSERT INTO chat_leads (id, ip_address, sessions_count) VALUES (?, ?, 1)`,
+    [id, ipAddress]
+  );
+  return id;
+}
+
+export async function incrementLeadSessions(leadId: string, ipAddress: string | null): Promise<void> {
+  const pool = getPool();
+  await pool.execute(
+    `UPDATE chat_leads SET sessions_count = sessions_count + 1, ip_address = COALESCE(?, ip_address) WHERE id = ?`,
+    [ipAddress, leadId]
+  );
+}
+
+export async function getLeadBySessionId(
+  sessionId: string
+): Promise<(LeadData & { id: string; sessions_count: number }) | null> {
+  const pool = getPool();
+  const [rows] = await pool.execute(
+    `SELECT l.* FROM chat_leads l JOIN chat_sessions s ON s.lead_id = l.id WHERE s.id = ?`,
+    [sessionId]
+  );
+  const results = rows as (LeadData & { id: string; sessions_count: number })[];
+  return results.length > 0 ? results[0] : null;
 }
 
 export async function upsertLead(
@@ -128,44 +189,48 @@ export async function upsertLead(
 ): Promise<void> {
   const pool = getPool();
 
-  // Check if lead already exists for this session
-  const [rows] = await pool.execute(
-    `SELECT id FROM chat_leads WHERE session_id = ?`,
-    [sessionId]
-  );
-  const existing = rows as { id: string }[];
+  // Find lead via session's lead_id
+  const lead = await getLeadBySessionId(sessionId);
 
-  if (existing.length > 0) {
+  if (lead) {
     // Update only non-null fields
     const updates: string[] = [];
     const params: string[] = [];
-    for (const [key, value] of Object.entries(data)) {
+    for (const key of LEAD_FIELDS) {
+      const value = data[key];
       if (value) {
         updates.push(`${key} = ?`);
         params.push(value);
       }
     }
     if (updates.length > 0) {
-      params.push(existing[0].id);
+      params.push(lead.id);
       await pool.execute(
         `UPDATE chat_leads SET ${updates.join(", ")} WHERE id = ?`,
         params
       );
     }
   } else {
+    // Fallback: create a new lead and link it to the session
     const id = randomUUID();
     await pool.execute(
-      `INSERT INTO chat_leads (id, session_id, email, company_name, company_type, problems, location, additional_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO chat_leads (id, first_name, last_name, email, company_name, company_type, problems, location, ip_address, additional_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         id,
-        sessionId,
+        data.first_name || null,
+        data.last_name || null,
         data.email || null,
         data.company_name || null,
         data.company_type || null,
         data.problems || null,
         data.location || null,
+        data.ip_address || null,
         data.additional_info || null,
       ]
+    );
+    await pool.execute(
+      `UPDATE chat_sessions SET lead_id = ? WHERE id = ?`,
+      [id, sessionId]
     );
   }
 

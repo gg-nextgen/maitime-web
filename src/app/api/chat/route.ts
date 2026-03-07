@@ -1,6 +1,6 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
-import { saveMessage, upsertLead } from "@/lib/chat-db";
+import { saveMessage, upsertLead, getLeadBySessionId } from "@/lib/chat-db";
 import type { LeadData } from "@/lib/chat-db";
 
 const anthropic = createAnthropic({
@@ -105,24 +105,26 @@ Abbiamo delle guide pratiche gratuite che l'utente può scaricare per approfondi
 Durante la conversazione, cerca di raccogliere in modo naturale e graduale informazioni sull'interlocutore. NON chiedere tutto insieme — distribuisci le domande nel corso della conversazione, una alla volta, e solo quando il contesto lo rende naturale.
 
 Informazioni da raccogliere (in ordine di priorità):
-1. **Tipo di azienda / settore** — es. "In che settore opera la sua azienda?" o "Di cosa si occupa la sua azienda?"
-2. **Problemi principali** — ascolta i problemi che l'utente descrive, questo emerge naturalmente
-3. **Località** — es. "Dove ha sede la sua azienda?" (chiedi solo se la conversazione lo permette)
-4. **Nome azienda** — emerge spesso naturalmente dalla conversazione
-5. **Email** — chiedi SOLO verso la fine di una conversazione approfondita, es. "Se vuole, posso farle avere più dettagli via email. Qual è il suo indirizzo?"
+1. **Nome** — spesso emerge naturalmente quando l'utente si presenta. Non chiederlo subito, ma se dopo qualche scambio non si è presentato puoi dire "A proposito, con chi ho il piacere di parlare?"
+2. **Tipo di azienda / settore** — es. "In che settore opera la sua azienda?" o "Di cosa si occupa la sua azienda?"
+3. **Problemi principali** — ascolta i problemi che l'utente descrive, questo emerge naturalmente
+4. **Località** — es. "Dove ha sede la sua azienda?" (chiedi solo se la conversazione lo permette)
+5. **Nome azienda** — emerge spesso naturalmente dalla conversazione
+6. **Email** — chiedi SOLO verso la fine di una conversazione approfondita, es. "Se vuole, posso farle avere più dettagli via email. Qual è il suo indirizzo?"
 
 Regole per la raccolta:
 - Mai chiedere più di un'informazione alla volta
 - Non forzare mai — se l'utente cambia argomento, segui il suo interesse
 - Le prime 3-4 risposte NON devono contenere domande personali — concentrati prima sul valore
 - L'email è l'ultima cosa da chiedere, e solo se c'è stato un dialogo significativo (almeno 4-5 scambi)
+- Se ti vengono forniti dati già noti (vedi sotto), NON richiedere quelle informazioni
 
 Quando raccogli un'informazione nuova, aggiungi alla FINE della tua risposta (dopo il testo visibile) un blocco dati nel seguente formato esatto:
 <!-- LEAD_DATA: {"campo": "valore"} -->
 
-I campi possibili sono: email, company_name, company_type, problems, location
-Esempio: se l'utente dice "abbiamo un'azienda di abbigliamento a Milano", aggiungi:
-<!-- LEAD_DATA: {"company_type": "abbigliamento", "location": "Milano"} -->
+I campi possibili sono: first_name, last_name, email, company_name, company_type, problems, location
+Esempio: se l'utente dice "Sono Marco Rossi, abbiamo un'azienda di abbigliamento a Milano", aggiungi:
+<!-- LEAD_DATA: {"first_name": "Marco", "last_name": "Rossi", "company_type": "abbigliamento", "location": "Milano"} -->
 
 Includi SOLO i campi con informazioni nuove. Non ripetere dati già raccolti. Se non raccogli nuove informazioni, NON aggiungere il blocco.
 
@@ -185,9 +187,37 @@ export async function POST(req: Request) {
       );
     }
 
+    // Build system prompt with known lead data
+    let systemPrompt = SYSTEM_PROMPT;
+    if (sessionId) {
+      try {
+        const lead = await getLeadBySessionId(sessionId);
+        if (lead) {
+          const knownFields: string[] = [];
+          if (lead.first_name) knownFields.push(`Nome: ${lead.first_name}`);
+          if (lead.last_name) knownFields.push(`Cognome: ${lead.last_name}`);
+          if (lead.email) knownFields.push(`Email: ${lead.email}`);
+          if (lead.company_name) knownFields.push(`Azienda: ${lead.company_name}`);
+          if (lead.company_type) knownFields.push(`Settore: ${lead.company_type}`);
+          if (lead.location) knownFields.push(`Località: ${lead.location}`);
+          if (lead.problems) knownFields.push(`Problemi: ${lead.problems}`);
+
+          if (knownFields.length > 0) {
+            systemPrompt += `\n\n## DATI GIÀ RACCOLTI SULL'INTERLOCUTORE\nQueste informazioni sono già state raccolte in conversazioni precedenti. NON chiederle di nuovo. Usale per personalizzare le risposte (es. chiamare l'utente per nome).\n${knownFields.join("\n")}`;
+          }
+
+          if (lead.sessions_count > 1) {
+            systemPrompt += `\n\nNota: questo utente ha già visitato il sito ${lead.sessions_count} volte. È un contatto ricorrente — mostra che lo riconosci, es. "Bentornato!" se è il primo messaggio della conversazione.`;
+          }
+        }
+      } catch (err) {
+        console.error("[CHAT] Error fetching lead data:", err);
+      }
+    }
+
     const result = streamText({
       model: anthropic("claude-sonnet-4-20250514"),
-      system: SYSTEM_PROMPT,
+      system: systemPrompt,
       messages,
       maxOutputTokens: 1024,
       async onFinish({ text }) {
