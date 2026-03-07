@@ -10,13 +10,58 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.maitime.ai/risorse",
   },
+  openGraph: {
+    title: "Risorse Gratuite per le PMI — MAITIME",
+    description:
+      "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale con l'AI.",
+    url: "https://www.maitime.ai/risorse",
+    type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Risorse Gratuite MAITIME per PMI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Risorse Gratuite per le PMI — MAITIME",
+    description:
+      "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale con l'AI.",
+    images: ["/assets/og-image.png"],
+  },
 };
 
 export default function RisorsePage() {
   const resources = getAllResources();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Risorse Gratuite per le PMI",
+    description:
+      "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale.",
+    url: "https://www.maitime.ai/risorse",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: resources.length,
+      itemListElement: resources.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://www.maitime.ai/risorse/${r.slug}`,
+        name: r.title,
+      })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">

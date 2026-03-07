@@ -31,7 +31,22 @@ export async function generateMetadata({
     openGraph: {
       title: `${mod.title} | MAITIME`,
       description: mod.description,
+      url: `https://www.maitime.ai/piattaforma/${mod.slug}`,
       type: "website",
+      images: [
+        {
+          url: "/assets/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${mod.title} — MAITIME`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${mod.title} | MAITIME`,
+      description: mod.description,
+      images: ["/assets/og-image.png"],
     },
   };
 }

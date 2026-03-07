@@ -8,11 +8,54 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.maitime.ai/contatti",
   },
+  openGraph: {
+    title: "Contatti — MAITIME",
+    description:
+      "Prenota una demo gratuita di 30 minuti o scrivici per qualsiasi domanda sulla piattaforma AI per PMI.",
+    url: "https://www.maitime.ai/contatti",
+    type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Contatta MAITIME",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contatti — MAITIME",
+    description:
+      "Prenota una demo gratuita di 30 minuti o scrivici per qualsiasi domanda.",
+    images: ["/assets/og-image.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  mainEntity: {
+    "@type": "Organization",
+    name: "MAITIME — G&G NextGen",
+    email: "maitime@maitime.ai",
+    url: "https://www.maitime.ai",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Civitanova Marche",
+      addressRegion: "MC",
+      addressCountry: "IT",
+    },
+  },
 };
 
 export default function ContattiPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">

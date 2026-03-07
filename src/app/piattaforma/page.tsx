@@ -14,6 +14,23 @@ export const metadata: Metadata = {
     title: "Piattaforma MAITIME — 18 Moduli AI per la Tua Impresa",
     description:
       "Dashboard vendite, gestione clienti, magazzino, ordini, chatbot AI, gestione progetti e molto altro. Tutto in un'unica piattaforma.",
+    url: "https://www.maitime.ai/piattaforma",
+    type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Piattaforma MAITIME — 18 Moduli AI per PMI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Piattaforma MAITIME — 18 Moduli AI per la Tua Impresa",
+    description:
+      "Dashboard vendite, gestione clienti, magazzino, ordini, chatbot AI e molto altro. Tutto in un'unica piattaforma.",
+    images: ["/assets/og-image.png"],
   },
 };
 
@@ -23,9 +40,44 @@ const planColor = {
   "Tutti i piani": "from-[#059669] to-[#10B981]",
 } as const;
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Piattaforma MAITIME — 18 Moduli AI per PMI",
+  description:
+    "Scopri tutti i moduli della piattaforma MAITIME: vendite, produzione, magazzino, customer care, risorse umane e strategie.",
+  url: "https://www.maitime.ai/piattaforma",
+  mainEntity: {
+    "@type": "SoftwareApplication",
+    name: "MAITIME",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Professional",
+        price: "499",
+        priceCurrency: "EUR",
+        priceValidUntil: "2026-12-31",
+      },
+      {
+        "@type": "Offer",
+        name: "Platinum",
+        price: "899",
+        priceCurrency: "EUR",
+        priceValidUntil: "2026-12-31",
+      },
+    ],
+  },
+};
+
 export default function PiattaformaPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ════════════════════════════════════════════════
           HERO
           ════════════════════════════════════════════════ */}

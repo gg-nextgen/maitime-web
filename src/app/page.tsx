@@ -11,11 +11,81 @@ export const metadata: Metadata = {
   description:
     "MAITIME è la piattaforma AI che si collega al tuo gestionale, analizza i dati e ti suggerisce le migliori strategie per far crescere il tuo business.",
   alternates: { canonical: "https://www.maitime.ai" },
+  openGraph: {
+    title: "MAITIME - L'AI per le Piccole Imprese",
+    description:
+      "La piattaforma AI che si collega al tuo gestionale, analizza i dati e ti suggerisce le migliori strategie per far crescere il tuo business.",
+    url: "https://www.maitime.ai",
+    type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "MAITIME - L'AI per le Piccole Imprese Italiane",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MAITIME - L'AI per le Piccole Imprese",
+    description:
+      "La piattaforma AI che si collega al tuo gestionale e ti suggerisce le migliori strategie per far crescere il tuo business.",
+    images: ["/assets/og-image.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.maitime.ai/#organization",
+      name: "G&G NextGen",
+      url: "https://www.maitime.ai",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Civitanova Marche",
+        addressRegion: "MC",
+        addressCountry: "IT",
+      },
+      sameAs: [
+        "https://www.linkedin.com/company/106171898",
+        "https://www.instagram.com/gg_nextgen",
+        "https://www.youtube.com/channel/UCVFFf175JbFs6isvkxsbbTw",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.maitime.ai/#website",
+      url: "https://www.maitime.ai",
+      name: "MAITIME",
+      publisher: { "@id": "https://www.maitime.ai/#organization" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.maitime.ai/#webpage",
+      url: "https://www.maitime.ai",
+      name: "MAITIME - L'AI per le Piccole Imprese",
+      isPartOf: { "@id": "https://www.maitime.ai/#website" },
+      about: { "@id": "https://www.maitime.ai/#organization" },
+      description:
+        "MAITIME è la piattaforma AI che si collega al tuo gestionale, analizza i dati e ti suggerisce le migliori strategie per far crescere il tuo business.",
+    },
+  ],
 };
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ════════════════════════════════════════════════
           HERO SECTION - Full viewport, particles, chat
           ════════════════════════════════════════════════ */}

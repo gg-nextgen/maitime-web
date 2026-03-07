@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.maitime.ai/privacy-policy",
   },
+  openGraph: {
+    title: "Privacy Policy — MAITIME",
+    description:
+      "Informativa sulla privacy ai sensi del GDPR. Scopri come trattiamo i tuoi dati personali.",
+    url: "https://www.maitime.ai/privacy-policy",
+    type: "website",
+  },
 };
 
 export default function PrivacyPolicyPage() {

@@ -33,6 +33,7 @@ export async function generateMetadata({
     openGraph: {
       title: resource.title,
       description: resource.description,
+      url: `https://www.maitime.ai/risorse/${resource.slug}`,
       type: "article",
       publishedTime: resource.date,
       authors: ["G&G NextGen"],
@@ -44,6 +45,12 @@ export async function generateMetadata({
           alt: resource.title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: resource.title,
+      description: resource.description,
+      images: [`https://www.maitime.ai${resource.coverImage}`],
     },
   };
 }

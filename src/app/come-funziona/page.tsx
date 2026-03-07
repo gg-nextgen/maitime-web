@@ -7,6 +7,28 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.maitime.ai/come-funziona",
   },
+  openGraph: {
+    title: "Come Funziona MAITIME — AI per la Tua Azienda",
+    description:
+      "Collega il tuo gestionale, fai una domanda in linguaggio naturale, ricevi analisi e suggerimenti pronti all'uso.",
+    url: "https://www.maitime.ai/come-funziona",
+    type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Come Funziona MAITIME",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Come Funziona MAITIME — AI per la Tua Azienda",
+    description:
+      "Collega il tuo gestionale, fai una domanda in linguaggio naturale, ricevi analisi e suggerimenti pronti all'uso.",
+    images: ["/assets/og-image.png"],
+  },
 };
 
 const videos = [
@@ -36,9 +58,41 @@ const videos = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Come Funziona MAITIME",
+  description:
+    "Tre passaggi per trasformare la gestione della tua azienda con l'AI.",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Collega il Tuo Gestionale",
+      text: "MAITIME si integra con i tuoi sistemi aziendali esistenti. Non devi cambiare software: ci colleghiamo noi ai tuoi dati, in modo sicuro e crittografato.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Fai una Domanda",
+      text: "Scrivi in linguaggio naturale quello che vuoi sapere. MAITIME capisce e risponde con dati reali.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Ricevi Risposte e Agisci",
+      text: "Ottieni analisi dettagliate, report grafici e suggerimenti operativi. MAITIME può anche agire per te.",
+    },
+  ],
+};
+
 export default function ComeFunzionaPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">

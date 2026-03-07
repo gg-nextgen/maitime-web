@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.maitime.ai/cookie-policy",
   },
+  openGraph: {
+    title: "Cookie Policy — MAITIME",
+    description:
+      "Cookie Policy ai sensi del GDPR. Scopri come utilizziamo i cookie sul nostro sito.",
+    url: "https://www.maitime.ai/cookie-policy",
+    type: "website",
+  },
 };
 
 export default function CookiePolicyPage() {

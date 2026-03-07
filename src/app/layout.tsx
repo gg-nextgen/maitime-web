@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       "Scopri come MAITIME può automatizzare le attività della tua impresa e migliorare la gestione aziendale.",
     images: [
       {
-        url: "/assets/MAITIME_Logo_Dark.png",
+        url: "/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "MAITIME - L'AI per le Piccole Imprese",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "MAITIME - L'AI per le Piccole Imprese",
     description:
       "Scopri come MAITIME può automatizzare la tua impresa e migliorare la gestione aziendale.",
-    images: ["/assets/MAITIME_Logo_Dark.png"],
+    images: ["/assets/og-image.png"],
     site: "@gg_nextgen",
   },
   robots: {

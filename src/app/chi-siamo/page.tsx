@@ -8,11 +8,64 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.maitime.ai/chi-siamo",
   },
+  openGraph: {
+    title: "Chi Siamo — MAITIME by G&G NextGen",
+    description:
+      "Creata da un imprenditore per gli imprenditori. MAITIME è la piattaforma AI che aiuta le PMI a ottimizzare la gestione aziendale.",
+    url: "https://www.maitime.ai/chi-siamo",
+    type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "MAITIME — Chi Siamo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chi Siamo — MAITIME by G&G NextGen",
+    description:
+      "Creata da un imprenditore per gli imprenditori. La piattaforma AI che aiuta le PMI italiane.",
+    images: ["/assets/og-image.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  mainEntity: {
+    "@type": "Organization",
+    name: "G&G NextGen",
+    brand: {
+      "@type": "Brand",
+      name: "MAITIME",
+    },
+    url: "https://www.maitime.ai",
+    logo: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Civitanova Marche",
+      addressRegion: "MC",
+      addressCountry: "IT",
+    },
+    taxID: "02144530439",
+    sameAs: [
+      "https://www.linkedin.com/company/106171898",
+      "https://www.instagram.com/gg_nextgen",
+      "https://www.youtube.com/channel/UCVFFf175JbFs6isvkxsbbTw",
+    ],
+  },
 };
 
 export default function ChiSiamoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
