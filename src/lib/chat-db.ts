@@ -112,3 +112,66 @@ export async function updateSessionNotes(
     sessionId,
   ]);
 }
+
+export interface LeadData {
+  email?: string;
+  company_name?: string;
+  company_type?: string;
+  problems?: string;
+  location?: string;
+  additional_info?: string;
+}
+
+export async function upsertLead(
+  sessionId: string,
+  data: LeadData
+): Promise<void> {
+  const pool = getPool();
+
+  // Check if lead already exists for this session
+  const [rows] = await pool.execute(
+    `SELECT id FROM chat_leads WHERE session_id = ?`,
+    [sessionId]
+  );
+  const existing = rows as { id: string }[];
+
+  if (existing.length > 0) {
+    // Update only non-null fields
+    const updates: string[] = [];
+    const params: string[] = [];
+    for (const [key, value] of Object.entries(data)) {
+      if (value) {
+        updates.push(`${key} = ?`);
+        params.push(value);
+      }
+    }
+    if (updates.length > 0) {
+      params.push(existing[0].id);
+      await pool.execute(
+        `UPDATE chat_leads SET ${updates.join(", ")} WHERE id = ?`,
+        params
+      );
+    }
+  } else {
+    const id = randomUUID();
+    await pool.execute(
+      `INSERT INTO chat_leads (id, session_id, email, company_name, company_type, problems, location, additional_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        id,
+        sessionId,
+        data.email || null,
+        data.company_name || null,
+        data.company_type || null,
+        data.problems || null,
+        data.location || null,
+        data.additional_info || null,
+      ]
+    );
+  }
+
+  // Mark session as lead
+  await pool.execute(
+    `UPDATE chat_sessions SET status = 'lead' WHERE id = ?`,
+    [sessionId]
+  );
+}

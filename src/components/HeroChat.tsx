@@ -73,7 +73,9 @@ export default function HeroChat() {
     return message.parts
       .filter((p): p is { type: "text"; text: string } => p.type === "text")
       .map((p) => p.text)
-      .join("");
+      .join("")
+      .replace(/<!--\s*LEAD_DATA:\s*\{[^}]+\}\s*-->/g, "")
+      .trimEnd();
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -91,6 +93,7 @@ export default function HeroChat() {
   const suggestions = [
     "Come funziona MAITIME?",
     "Quanto costa?",
+    "Guide Gratuite",
     "Prenota una demo",
   ];
 
@@ -156,11 +159,19 @@ export default function HeroChat() {
                         ul: ({ children }) => <ul className="mb-2 ml-4 list-disc last:mb-0">{children}</ul>,
                         ol: ({ children }) => <ol className="mb-2 ml-4 list-decimal last:mb-0">{children}</ol>,
                         li: ({ children }) => <li className="mb-0.5">{children}</li>,
-                        a: ({ href, children }) => (
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#FF00FF] underline underline-offset-2 hover:text-[#FF00FF]/80">
-                            {children}
-                          </a>
-                        ),
+                        a: ({ href, children }) => {
+                          const isInternal = href?.startsWith("/");
+                          return (
+                            <a
+                              href={href}
+                              target={isInternal ? "_self" : "_blank"}
+                              rel={isInternal ? undefined : "noopener noreferrer"}
+                              className="my-1 inline-block rounded-lg border border-[#FF00FF]/40 bg-[#FF00FF]/10 px-3 py-1.5 text-xs font-medium text-[#FF00FF] no-underline transition-all hover:border-[#FF00FF]/70 hover:bg-[#FF00FF]/20"
+                            >
+                              {children}
+                            </a>
+                          );
+                        },
                       }}
                     >
                       {getMessageText(message)}
@@ -196,9 +207,24 @@ export default function HeroChat() {
             {suggestions.map((s) => (
               <button
                 key={s}
-                onClick={() => handleSuggestion(s)}
-                className="rounded-full border border-[#FF00FF]/30 bg-[#FF00FF]/5 px-3.5 py-1.5 text-xs text-[#FF00FF] transition-all hover:border-[#FF00FF]/60 hover:bg-[#FF00FF]/10"
+                onClick={() =>
+                  handleSuggestion(
+                    s === "Guide Gratuite"
+                      ? "Vorrei sapere di più sulle vostre risorse gratuite"
+                      : s
+                  )
+                }
+                className={`rounded-full border px-3.5 py-1.5 text-xs transition-all ${
+                  s === "Guide Gratuite"
+                    ? "border-cyan-400/30 bg-cyan-400/5 text-cyan-400 hover:border-cyan-400/60 hover:bg-cyan-400/10"
+                    : "border-[#FF00FF]/30 bg-[#FF00FF]/5 text-[#FF00FF] hover:border-[#FF00FF]/60 hover:bg-[#FF00FF]/10"
+                }`}
               >
+                {s === "Guide Gratuite" && (
+                  <svg className="mr-1 -mt-0.5 inline-block h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                )}
                 {s}
               </button>
             ))}
