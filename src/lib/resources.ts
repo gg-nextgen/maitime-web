@@ -133,6 +133,29 @@ const resources: Resource[] = [
       "Imprenditori e responsabili commerciali di PMI italiane che vogliono trasformare il proprio sito web da vetrina statica a strumento attivo di assistenza e generazione lead.",
     hubspotFormId: "ef1b79d3-b2c3-4f8f-9ab8-346e7f6f9866",
   },
+  {
+    slug: "selezione-gestione-personale-ai",
+    title: "Selezione e Gestione del Personale con l'AI",
+    subtitle: "Dall'analisi del CV alla profilazione comportamentale del team",
+    description:
+      "Il 46% dei nuovi assunti non supera i primi 18 mesi — e la causa principale non è tecnica, è comportamentale. Scopri come l'AI può velocizzare lo screening CV, la profilazione comportamentale e il team building data-driven. Include checklist operative per screening, profilazione, team mapping e processo continuo.",
+    date: "2026-03-07",
+    type: "ebook",
+    tags: ["Risorse Umane", "Selezione Personale", "Profilazione", "PMI"],
+    coverImage: "/assets/resources/selezione-gestione-personale-ai-cover.webp",
+    pages: 15,
+    highlights: [
+      "Il costo nascosto delle assunzioni sbagliate: 6-9 mesi di stipendio lordo",
+      "Screening CV con l'AI: velocità, oggettività, confrontabilità e tracciabilità",
+      "Profilazione comportamentale: stile di comunicazione, stress, motivazioni e dinamiche relazionali",
+      "Team building data-driven: compatibilità, ruoli, comunicazione e gestione conflitti",
+      "Il processo completo in 5 step: dal CV al team ad alte prestazioni",
+      "Checklist operative per screening CV, profilazione candidati, team mapping e processo continuo",
+    ],
+    targetAudience:
+      "Imprenditori e responsabili HR di PMI italiane che vogliono passare dalle assunzioni \"a sensazione\" a un processo di selezione e gestione del personale strutturato, basato su dati e profilazione comportamentale.",
+    hubspotFormId: "a7eda499-aaf8-4a22-bbde-b0960e681ad7",
+  },
 ];
 
 export function getAllResources(): Resource[] {
