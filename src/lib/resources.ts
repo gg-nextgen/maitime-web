@@ -202,6 +202,29 @@ const resources: Resource[] = [
       "Imprenditori e titolari di PMI italiane che vogliono smettere di cercare informazioni nei software e iniziare a fare domande alla propria azienda in italiano, ottenendo risposte in secondi.",
     hubspotFormId: "b02852be-4ef3-453d-88af-877b59ce59b9",
   },
+  {
+    slug: "analisi-dati-azienda",
+    title: "Analisi dei Dati in Azienda",
+    subtitle: "La Guida Operativa per PMI che Vogliono Decidere con i Numeri",
+    description:
+      "Il 65% delle PMI italiane decide \"a sensazione\". Scopri le 4 analisi fondamentali (commerciale, clienti, prodotti, operativa), i KPI che contano davvero, il metodo in 5 step per trasformare i dati in decisioni e i 7 errori da evitare. Include checklist operative, soglie semaforo per ogni KPI e glossario.",
+    date: "2026-03-08",
+    type: "ebook",
+    tags: ["Analisi Dati", "KPI", "Dashboard", "PMI"],
+    coverImage: "/assets/resources/analisi-dati-azienda-cover.webp",
+    pages: 15,
+    highlights: [
+      "I 5 motivi per cui le PMI non usano i propri dati (e come superarli)",
+      "Le 4 analisi fondamentali: commerciale, clienti, prodotti e operativa",
+      "I KPI che contano: azionabili, comprensibili, misurabili oggi",
+      "Il concetto del semaforo: soglie verde-giallo-rosso per ogni KPI",
+      "Il metodo in 5 step: raccogli, struttura, analizza, decidi, misura",
+      "I 7 errori da evitare nell'analisi dei dati aziendali",
+    ],
+    targetAudience:
+      "Imprenditori e titolari di PMI italiane che vogliono smettere di decidere a sensazione e iniziare a usare i dati che già hanno nel gestionale per prendere decisioni migliori.",
+    hubspotFormId: "3f37aeea-849f-4ee1-bf73-ddd711c62c82",
+  },
 ];
 
 export function getAllResources(): Resource[] {
