@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Scopri come MAITIME si integra con il tuo gestionale e ti aiuta ad analizzare dati, gestire clienti e automatizzare le comunicazioni.",
   alternates: {
-    canonical: "https://www.maitime.ai/come-funziona",
+    canonical: "https://maitime.ai/come-funziona",
   },
   openGraph: {
     title: "Come Funziona MAITIME — AI per la Tua Azienda",
     description:
       "Collega il tuo gestionale, fai una domanda in linguaggio naturale, ricevi analisi e suggerimenti pronti all'uso.",
-    url: "https://www.maitime.ai/come-funziona",
+    url: "https://maitime.ai/come-funziona",
     type: "website",
     images: [
       {

@@ -26,12 +26,12 @@ export async function generateMetadata({
     title: `${mod.title} — ${mod.tagline}`,
     description: mod.description,
     alternates: {
-      canonical: `https://www.maitime.ai/piattaforma/${mod.slug}`,
+      canonical: `https://maitime.ai/piattaforma/${mod.slug}`,
     },
     openGraph: {
       title: `${mod.title} | MAITIME`,
       description: mod.description,
-      url: `https://www.maitime.ai/piattaforma/${mod.slug}`,
+      url: `https://maitime.ai/piattaforma/${mod.slug}`,
       type: "website",
       images: [
         {

@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione della propria azienda con l'AI e i dati.",
   alternates: {
-    canonical: "https://www.maitime.ai/risorse",
+    canonical: "https://maitime.ai/risorse",
   },
   openGraph: {
     title: "Risorse Gratuite per le PMI — MAITIME",
     description:
       "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale con l'AI.",
-    url: "https://www.maitime.ai/risorse",
+    url: "https://maitime.ai/risorse",
     type: "website",
     images: [
       {
@@ -43,14 +43,14 @@ export default function RisorsePage() {
     name: "Risorse Gratuite per le PMI",
     description:
       "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale.",
-    url: "https://www.maitime.ai/risorse",
+    url: "https://maitime.ai/risorse",
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: resources.length,
       itemListElement: resources.map((r, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `https://www.maitime.ai/risorse/${r.slug}`,
+        url: `https://maitime.ai/risorse/${r.slug}`,
         name: r.title,
       })),
     },

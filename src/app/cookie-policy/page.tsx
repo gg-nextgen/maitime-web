@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Cookie Policy di MAITIME ai sensi del GDPR e del Provvedimento del Garante 10 giugno 2021. Scopri come utilizziamo i cookie sul nostro sito.",
   alternates: {
-    canonical: "https://www.maitime.ai/cookie-policy",
+    canonical: "https://maitime.ai/cookie-policy",
   },
   openGraph: {
     title: "Cookie Policy — MAITIME",
     description:
       "Cookie Policy ai sensi del GDPR. Scopri come utilizziamo i cookie sul nostro sito.",
-    url: "https://www.maitime.ai/cookie-policy",
+    url: "https://maitime.ai/cookie-policy",
     type: "website",
   },
 };

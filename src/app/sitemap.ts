@@ -7,14 +7,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const modules = getAllModules();
 
   const resourceEntries: MetadataRoute.Sitemap = resources.map((r) => ({
-    url: `https://www.maitime.ai/risorse/${r.slug}`,
+    url: `https://maitime.ai/risorse/${r.slug}`,
     lastModified: new Date(r.date),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
   const moduleEntries: MetadataRoute.Sitemap = modules.map((mod) => ({
-    url: `https://www.maitime.ai/piattaforma/${mod.slug}`,
+    url: `https://maitime.ai/piattaforma/${mod.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
@@ -22,49 +22,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: "https://www.maitime.ai",
+      url: "https://maitime.ai",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: "https://www.maitime.ai/piattaforma",
+      url: "https://maitime.ai/piattaforma",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: "https://www.maitime.ai/come-funziona",
+      url: "https://maitime.ai/come-funziona",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://www.maitime.ai/risorse",
+      url: "https://maitime.ai/risorse",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: "https://www.maitime.ai/chi-siamo",
+      url: "https://maitime.ai/chi-siamo",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: "https://www.maitime.ai/contatti",
+      url: "https://maitime.ai/contatti",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: "https://www.maitime.ai/privacy-policy",
+      url: "https://maitime.ai/privacy-policy",
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: "https://www.maitime.ai/cookie-policy",
+      url: "https://maitime.ai/cookie-policy",
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,

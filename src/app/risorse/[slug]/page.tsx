@@ -28,18 +28,18 @@ export async function generateMetadata({
     title: `${resource.title} | Risorsa Gratuita`,
     description: resource.description,
     alternates: {
-      canonical: `https://www.maitime.ai/risorse/${resource.slug}`,
+      canonical: `https://maitime.ai/risorse/${resource.slug}`,
     },
     openGraph: {
       title: resource.title,
       description: resource.description,
-      url: `https://www.maitime.ai/risorse/${resource.slug}`,
+      url: `https://maitime.ai/risorse/${resource.slug}`,
       type: "article",
       publishedTime: resource.date,
       authors: ["G&G NextGen"],
       images: [
         {
-          url: `https://www.maitime.ai${resource.coverImage}`,
+          url: `https://maitime.ai${resource.coverImage}`,
           width: 1200,
           height: 630,
           alt: resource.title,
@@ -50,7 +50,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: resource.title,
       description: resource.description,
-      images: [`https://www.maitime.ai${resource.coverImage}`],
+      images: [`https://maitime.ai${resource.coverImage}`],
     },
   };
 }
@@ -248,10 +248,10 @@ export default async function ResourcePage({ params }: PageProps) {
               name: "MAITIME",
               logo: {
                 "@type": "ImageObject",
-                url: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
+                url: "https://maitime.ai/assets/MAITIME_Logo_Dark.png",
               },
             },
-            image: `https://www.maitime.ai${resource.coverImage}`,
+            image: `https://maitime.ai${resource.coverImage}`,
             offers: {
               "@type": "Offer",
               price: "0",

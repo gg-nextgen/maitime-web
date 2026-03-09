@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "MAITIME è un progetto di G&G NextGen. Creata da un imprenditore per gli imprenditori, la piattaforma AI aiuta le PMI a ottimizzare la gestione aziendale.",
   alternates: {
-    canonical: "https://www.maitime.ai/chi-siamo",
+    canonical: "https://maitime.ai/chi-siamo",
   },
   openGraph: {
     title: "Chi Siamo — MAITIME by G&G NextGen",
     description:
       "Creata da un imprenditore per gli imprenditori. MAITIME è la piattaforma AI che aiuta le PMI a ottimizzare la gestione aziendale.",
-    url: "https://www.maitime.ai/chi-siamo",
+    url: "https://maitime.ai/chi-siamo",
     type: "website",
     images: [
       {
@@ -42,8 +42,8 @@ const jsonLd = {
       "@type": "Brand",
       name: "MAITIME",
     },
-    url: "https://www.maitime.ai",
-    logo: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
+    url: "https://maitime.ai",
+    logo: "https://maitime.ai/assets/MAITIME_Logo_Dark.png",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Civitanova Marche",

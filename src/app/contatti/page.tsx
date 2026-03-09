@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Contatta il team MAITIME. Prenota una demo gratuita di 30 minuti o scrivici per qualsiasi domanda.",
   alternates: {
-    canonical: "https://www.maitime.ai/contatti",
+    canonical: "https://maitime.ai/contatti",
   },
   openGraph: {
     title: "Contatti — MAITIME",
     description:
       "Prenota una demo gratuita di 30 minuti o scrivici per qualsiasi domanda sulla piattaforma AI per PMI.",
-    url: "https://www.maitime.ai/contatti",
+    url: "https://maitime.ai/contatti",
     type: "website",
     images: [
       {
@@ -39,7 +39,7 @@ const jsonLd = {
     "@type": "Organization",
     name: "MAITIME — G&G NextGen",
     email: "maitime@maitime.ai",
-    url: "https://www.maitime.ai",
+    url: "https://maitime.ai",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Civitanova Marche",

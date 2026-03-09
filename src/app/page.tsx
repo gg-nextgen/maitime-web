@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: "MAITIME - L'AI per le Piccole Imprese",
   description:
     "MAITIME è la piattaforma AI che si collega al tuo gestionale, analizza i dati e ti suggerisce le migliori strategie per far crescere il tuo business.",
-  alternates: { canonical: "https://www.maitime.ai" },
+  alternates: { canonical: "https://maitime.ai" },
   openGraph: {
     title: "MAITIME - L'AI per le Piccole Imprese",
     description:
       "La piattaforma AI che si collega al tuo gestionale, analizza i dati e ti suggerisce le migliori strategie per far crescere il tuo business.",
-    url: "https://www.maitime.ai",
+    url: "https://maitime.ai",
     type: "website",
     images: [
       {
@@ -40,12 +40,12 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://www.maitime.ai/#organization",
+      "@id": "https://maitime.ai/#organization",
       name: "G&G NextGen",
-      url: "https://www.maitime.ai",
+      url: "https://maitime.ai",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
+        url: "https://maitime.ai/assets/MAITIME_Logo_Dark.png",
       },
       address: {
         "@type": "PostalAddress",
@@ -61,18 +61,18 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.maitime.ai/#website",
-      url: "https://www.maitime.ai",
+      "@id": "https://maitime.ai/#website",
+      url: "https://maitime.ai",
       name: "MAITIME",
-      publisher: { "@id": "https://www.maitime.ai/#organization" },
+      publisher: { "@id": "https://maitime.ai/#organization" },
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.maitime.ai/#webpage",
-      url: "https://www.maitime.ai",
+      "@id": "https://maitime.ai/#webpage",
+      url: "https://maitime.ai",
       name: "MAITIME - L'AI per le Piccole Imprese",
-      isPartOf: { "@id": "https://www.maitime.ai/#website" },
-      about: { "@id": "https://www.maitime.ai/#organization" },
+      isPartOf: { "@id": "https://maitime.ai/#website" },
+      about: { "@id": "https://maitime.ai/#organization" },
       description:
         "MAITIME è la piattaforma AI che si collega al tuo gestionale, analizza i dati e ti suggerisce le migliori strategie per far crescere il tuo business.",
     },

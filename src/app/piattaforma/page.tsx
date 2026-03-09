@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: "Piattaforma AI per PMI — Tutti i Moduli",
   description:
     "Scopri tutti i moduli della piattaforma MAITIME: vendite, produzione, magazzino, customer care, risorse umane e strategie. 18 moduli AI + Chat con il Direttore.",
-  alternates: { canonical: "https://www.maitime.ai/piattaforma" },
+  alternates: { canonical: "https://maitime.ai/piattaforma" },
   openGraph: {
     title: "Piattaforma MAITIME — 18 Moduli AI per la Tua Impresa",
     description:
       "Dashboard vendite, gestione clienti, magazzino, ordini, chatbot AI, gestione progetti e molto altro. Tutto in un'unica piattaforma.",
-    url: "https://www.maitime.ai/piattaforma",
+    url: "https://maitime.ai/piattaforma",
     type: "website",
     images: [
       {
@@ -46,7 +46,7 @@ const jsonLd = {
   name: "Piattaforma MAITIME — 18 Moduli AI per PMI",
   description:
     "Scopri tutti i moduli della piattaforma MAITIME: vendite, produzione, magazzino, customer care, risorse umane e strategie.",
-  url: "https://www.maitime.ai/piattaforma",
+  url: "https://maitime.ai/piattaforma",
   mainEntity: {
     "@type": "SoftwareApplication",
     name: "MAITIME",

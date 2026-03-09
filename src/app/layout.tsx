@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.maitime.ai"),
+  metadataBase: new URL("https://maitime.ai"),
   title: {
     default: "MAITIME - L'AI per le Piccole Imprese",
     template: "%s | MAITIME",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "it_IT",
-    url: "https://www.maitime.ai",
+    url: "https://maitime.ai",
     siteName: "MAITIME",
     title: "MAITIME - L'AI per le Piccole Imprese",
     description:
@@ -85,7 +85,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               name: "MAITIME",
-              image: "https://www.maitime.ai/assets/MAITIME_Logo_Dark.png",
+              image: "https://maitime.ai/assets/MAITIME_Logo_Dark.png",
               description:
                 "MAITIME è la piattaforma AI per le piccole imprese che ottimizza il tempo e migliora la gestione aziendale.",
               operatingSystem: "Web",

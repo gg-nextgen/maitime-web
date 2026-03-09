@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin", "/api/"],
     },
-    sitemap: "https://www.maitime.ai/sitemap.xml",
+    sitemap: "https://maitime.ai/sitemap.xml",
   };
 }
