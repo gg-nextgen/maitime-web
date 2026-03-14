@@ -7,14 +7,14 @@ import { secretumTargets } from "@/lib/secretum";
 
 export const metadata: Metadata = {
   title:
-    "A Chi Si Rivolge MAITIME SECRETUM — Studi, Amministratori, DPO",
+    "A Chi Si Rivolge MAITIME SECRETUM — Aziende, DPO, Studi Legali",
   description:
-    "Secretum è pensato per Studi di Amministrazione Condominiale, Amministratori di Condominio e Studi Legali / DPO. Scopri come può aiutare il tuo lavoro.",
+    "Secretum è pensato per aziende, attività commerciali, consulenti privacy, DPO e studi legali. Scopri come può semplificare la tua compliance GDPR.",
   alternates: { canonical: "https://maitime.ai/secretum/a-chi-si-rivolge" },
   openGraph: {
     title: "A Chi Si Rivolge MAITIME SECRETUM",
     description:
-      "Studi di amministrazione, amministratori e studi legali: tre prospettive, una piattaforma per la compliance GDPR condominiale.",
+      "Aziende, consulenti privacy, DPO e studi legali: una piattaforma per la compliance GDPR di ogni organizzazione.",
     url: "https://maitime.ai/secretum/a-chi-si-rivolge",
     type: "website",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "A Chi Si Rivolge MAITIME SECRETUM",
     description:
-      "Studi di amministrazione, amministratori e studi legali: una piattaforma per la compliance GDPR condominiale.",
+      "Aziende, consulenti privacy, DPO e studi legali: una piattaforma per la compliance GDPR.",
     images: ["/assets/og-image.png"],
   },
 };
@@ -40,7 +40,7 @@ const jsonLd = {
   "@type": "WebPage",
   name: "A Chi Si Rivolge MAITIME SECRETUM",
   description:
-    "Secretum è pensato per Studi di Amministrazione Condominiale, Amministratori di Condominio e Studi Legali / DPO.",
+    "Secretum è pensato per aziende, attività commerciali, consulenti privacy, DPO e studi legali.",
   url: "https://maitime.ai/secretum/a-chi-si-rivolge",
   isPartOf: {
     "@type": "WebSite",
@@ -79,13 +79,13 @@ export default function SecretumTargetPage() {
           <h1 className="glow-text text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             Una Piattaforma,{" "}
             <span className="bg-gradient-to-r from-white via-[#06B6D4] to-[#0891B2] bg-clip-text text-transparent">
-              Tre Prospettive
+              Ogni Esigenza
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/60">
-            Ognuno vede ciò che gli serve. Secretum si adatta al ruolo
-            dell&apos;utente per offrire gli strumenti giusti, nel momento
-            giusto.
+            Che tu sia un&apos;azienda che deve mettersi in regola, un DPO che
+            gestisce più clienti o uno studio legale che offre consulenza
+            privacy, Secretum si adatta al tuo ruolo.
           </p>
         </div>
       </section>

@@ -436,12 +436,12 @@ export default function HomePage() {
                   MAITIME SECRETUM
                 </h3>
                 <p className="mb-3 text-sm font-medium text-white/50">
-                  La privacy condominiale, finalmente semplice
+                  La gestione della privacy, finalmente semplice
                 </p>
                 <p className="text-sm leading-relaxed text-white/60">
-                  Genera, gestisce e firma i documenti privacy obbligatori per i
-                  condomini. Firma elettronica OTP, dashboard compliance, audit
-                  digitali e assistente AI integrato.
+                  Genera, gestisce e firma i documenti privacy obbligatori per
+                  la tua organizzazione. Firma elettronica OTP, dashboard
+                  compliance, audit digitali e assistente AI integrato.
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#06B6D4]">
                   Scopri SECRETUM &rarr;

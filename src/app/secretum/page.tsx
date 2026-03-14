@@ -6,14 +6,14 @@ import GlowCard from "@/components/GlowCard";
 import { secretumFeatures, secretumTargets } from "@/lib/secretum";
 
 export const metadata: Metadata = {
-  title: "MAITIME SECRETUM — Privacy Condominiale, Finalmente Semplice",
+  title: "MAITIME SECRETUM — Gestione Privacy e Compliance GDPR con AI",
   description:
-    "Secretum è la piattaforma AI che genera, gestisce e firma i documenti privacy obbligatori per i condomini. GDPR, firma elettronica OTP, dashboard compliance e audit digitali.",
+    "Secretum è la piattaforma AI che genera, gestisce e firma i documenti privacy obbligatori. Dashboard compliance, audit digitali, firma elettronica OTP per aziende, DPO e studi legali.",
   alternates: { canonical: "https://maitime.ai/secretum" },
   openGraph: {
-    title: "MAITIME SECRETUM — Privacy Condominiale, Finalmente Semplice",
+    title: "MAITIME SECRETUM — Gestione Privacy e Compliance GDPR con AI",
     description:
-      "La piattaforma intelligente per la gestione della documentazione privacy (GDPR) nel contesto condominiale italiano.",
+      "La piattaforma intelligente per la gestione della privacy e della compliance GDPR. Per aziende, consulenti, DPO e studi legali.",
     url: "https://maitime.ai/secretum",
     type: "website",
     images: [
@@ -21,15 +21,15 @@ export const metadata: Metadata = {
         url: "/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "MAITIME SECRETUM — Privacy Condominiale",
+        alt: "MAITIME SECRETUM — Gestione Privacy e Compliance GDPR",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MAITIME SECRETUM — Privacy Condominiale, Finalmente Semplice",
+    title: "MAITIME SECRETUM — Gestione Privacy e Compliance GDPR con AI",
     description:
-      "Genera, gestisce e firma i documenti privacy obbligatori per i condomini. Con l'intelligenza artificiale al tuo fianco.",
+      "Genera, gestisce e firma i documenti privacy obbligatori. Con l'intelligenza artificiale al tuo fianco.",
     images: ["/assets/og-image.png"],
   },
 };
@@ -39,7 +39,7 @@ const jsonLd = {
   "@type": "SoftwareApplication",
   name: "MAITIME SECRETUM",
   description:
-    "Piattaforma SaaS per la gestione della documentazione privacy (GDPR) nel contesto condominiale italiano. Generazione documenti, firma elettronica, dashboard compliance e audit digitali.",
+    "Piattaforma SaaS per la gestione della privacy e della compliance GDPR. Generazione documenti, firma elettronica, dashboard compliance e audit digitali per aziende, DPO e studi legali.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   url: "https://maitime.ai/secretum",
@@ -66,19 +66,19 @@ export default function SecretumPage() {
             MAITIME SECRETUM
           </p>
           <h1 className="glow-text text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            La Privacy Condominiale,{" "}
+            La Gestione della Privacy,{" "}
             <span className="bg-gradient-to-r from-white via-[#06B6D4] to-[#0891B2] bg-clip-text text-transparent">
               Finalmente Semplice.
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60">
             La piattaforma intelligente che genera, gestisce e firma i documenti
-            privacy obbligatori per i condomini. Con l&apos;intelligenza
-            artificiale al tuo fianco.
+            privacy obbligatori per la tua organizzazione. Con
+            l&apos;intelligenza artificiale al tuo fianco.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-sm text-white/40">
-            Pensata per Studi di Amministrazione, Amministratori di Condominio e
-            Studi Legali / DPO.
+            Per aziende, attività commerciali, consulenti privacy, DPO e studi
+            legali.
           </p>
 
           {/* Coming Soon Badge */}
@@ -110,22 +110,22 @@ export default function SecretumPage() {
           <div className="mx-auto max-w-3xl space-y-4 text-base leading-relaxed text-white/70 sm:text-lg">
             <p>
               Maitime Secretum è una piattaforma SaaS progettata per
-              digitalizzare e semplificare la gestione della documentazione
-              privacy (GDPR) nel contesto condominiale italiano.
+              digitalizzare e semplificare la gestione della privacy e della
+              compliance GDPR per qualsiasi tipo di organizzazione.
             </p>
             <p>
-              Ogni condominio ha l&apos;obbligo di produrre e mantenere
-              aggiornata una serie di documenti privacy: informative per i
-              condomini, atti di nomina dell&apos;amministratore, contratti con i
-              fornitori, registri dei trattamenti, procedure per la gestione di
-              violazioni dei dati e molto altro.
+              Ogni azienda, studio professionale o attività commerciale ha
+              l&apos;obbligo di produrre e mantenere aggiornata una serie di
+              documenti privacy: informative, registri dei trattamenti, nomine,
+              procedure per la gestione delle violazioni dei dati e molto altro.
             </p>
             <p>
               Fino ad oggi, questa documentazione veniva gestita manualmente —
               spesso con modelli Word generici, fogli Excel e archivi cartacei —
               con il rischio concreto di errori, dimenticanze e{" "}
               <strong className="text-[#06B6D4]">
-                sanzioni che possono arrivare fino a 20 milioni di euro
+                sanzioni che possono arrivare fino a 20 milioni di euro o al 4%
+                del fatturato annuo
               </strong>
               .
             </p>
@@ -136,7 +136,7 @@ export default function SecretumPage() {
       {/* Key Features Preview */}
       <AnimatedSection className="section-dark px-4 py-24 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <AnimatedHeading subtitle="Un ecosistema completo per la compliance privacy condominiale.">
+          <AnimatedHeading subtitle="Un ecosistema completo per la compliance privacy della tua organizzazione.">
             Cosa Offre Secretum
           </AnimatedHeading>
 
@@ -170,7 +170,7 @@ export default function SecretumPage() {
       {/* Target Audiences */}
       <AnimatedSection className="section-light px-4 py-24 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <AnimatedHeading subtitle="Una piattaforma, tre prospettive diverse. Ognuno vede ciò che gli serve.">
+          <AnimatedHeading subtitle="Una piattaforma, prospettive diverse. Ognuno vede ciò che gli serve.">
             A Chi Si Rivolge
           </AnimatedHeading>
 
@@ -227,8 +227,8 @@ export default function SecretumPage() {
                 desc: "Normativa italiana aggiornata dal D.lgs. 101/2018",
               },
               {
-                title: "Linee Guida 2025 del Garante",
-                desc: "Indicazioni specifiche per il contesto condominiale",
+                title: "Provvedimenti e Linee Guida del Garante",
+                desc: "Indicazioni operative aggiornate per ogni settore",
               },
               {
                 title: "Regolamento eIDAS",
@@ -262,7 +262,7 @@ export default function SecretumPage() {
             {[
               {
                 title: "Risparmio di Tempo",
-                desc: "Genera l'intero fascicolo privacy di un condominio con un click. Da ore di lavoro a pochi minuti.",
+                desc: "Genera l'intero fascicolo privacy della tua organizzazione con pochi click. Da ore di lavoro a pochi minuti.",
               },
               {
                 title: "Conformità Garantita",
@@ -278,7 +278,7 @@ export default function SecretumPage() {
               },
               {
                 title: "Ecosistema Completo",
-                desc: "Non solo un generatore di documenti: una piattaforma che connette studi, amministratori e legali.",
+                desc: "Non solo un generatore di documenti: una piattaforma che connette aziende, consulenti e studi legali.",
               },
               {
                 title: "Sicurezza dei Dati",

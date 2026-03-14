@@ -6,14 +6,14 @@ import GlowCard from "@/components/GlowCard";
 import { secretumFeatures } from "@/lib/secretum";
 
 export const metadata: Metadata = {
-  title: "Funzionalità MAITIME SECRETUM — Gestione Privacy Condominiale",
+  title: "Funzionalità MAITIME SECRETUM — Gestione Privacy GDPR con AI",
   description:
-    "Generazione documenti GDPR, assistente AI, firma elettronica OTP, dashboard compliance, gestione condomini, audit digitali e notifiche automatiche.",
+    "Generazione documenti GDPR, assistente AI, firma elettronica OTP, dashboard compliance, gestione organizzazioni, audit digitali e notifiche automatiche.",
   alternates: { canonical: "https://maitime.ai/secretum/funzionalita" },
   openGraph: {
-    title: "Funzionalità MAITIME SECRETUM — Privacy Condominiale con AI",
+    title: "Funzionalità MAITIME SECRETUM — Privacy e Compliance GDPR",
     description:
-      "Tutte le funzionalità di Secretum: documenti GDPR automatici, firma OTP, dashboard compliance, audit digitali per studi legali e DPO.",
+      "Tutte le funzionalità di Secretum: documenti GDPR automatici, firma OTP, dashboard compliance, audit digitali per DPO e studi legali.",
     url: "https://maitime.ai/secretum/funzionalita",
     type: "website",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Funzionalità MAITIME SECRETUM — Privacy Condominiale con AI",
+    title: "Funzionalità MAITIME SECRETUM — Privacy e Compliance GDPR",
     description:
       "Documenti GDPR automatici, firma OTP, dashboard compliance, audit digitali. Tutto in un'unica piattaforma.",
     images: ["/assets/og-image.png"],
@@ -39,7 +39,7 @@ const jsonLd = {
   "@type": "WebPage",
   name: "Funzionalità MAITIME SECRETUM",
   description:
-    "Tutte le funzionalità della piattaforma MAITIME SECRETUM per la gestione della privacy condominiale.",
+    "Tutte le funzionalità della piattaforma MAITIME SECRETUM per la gestione della privacy e compliance GDPR.",
   url: "https://maitime.ai/secretum/funzionalita",
   isPartOf: {
     "@type": "WebSite",
@@ -83,8 +83,8 @@ export default function SecretumFunzionalitaPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/60">
             Sette moduli integrati per coprire ogni aspetto della compliance
-            privacy condominiale. Dalla generazione documenti alla firma
-            elettronica, dall&apos;audit al monitoraggio continuo.
+            privacy. Dalla generazione documenti alla firma elettronica,
+            dall&apos;audit al monitoraggio continuo.
           </p>
         </div>
       </section>

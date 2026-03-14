@@ -3,17 +3,20 @@ import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import AnimatedHeading from "@/components/AnimatedHeading";
 import GlowCard from "@/components/GlowCard";
-import { secretumStepsStudio, secretumStepsDPO } from "@/lib/secretum";
+import {
+  secretumStepsOrganization,
+  secretumStepsConsultant,
+} from "@/lib/secretum";
 
 export const metadata: Metadata = {
-  title: "Come Funziona MAITIME SECRETUM — 4 Passi per la Compliance",
+  title: "Come Funziona MAITIME SECRETUM — 4 Passi per la Compliance GDPR",
   description:
-    "Registrati, verifica la compliance, genera i documenti e firma. Scopri come Secretum semplifica la gestione privacy dei condomini in 4 semplici passi.",
+    "Registrati, verifica la compliance, genera i documenti e firma. Scopri come Secretum semplifica la gestione privacy della tua organizzazione in 4 passi.",
   alternates: { canonical: "https://maitime.ai/secretum/come-funziona" },
   openGraph: {
-    title: "Come Funziona MAITIME SECRETUM — 4 Passi per la Compliance",
+    title: "Come Funziona MAITIME SECRETUM — 4 Passi per la Compliance GDPR",
     description:
-      "Dalla registrazione alla firma: 4 passi per gestire la privacy condominiale. Per studi di amministrazione e studi legali / DPO.",
+      "Dalla registrazione alla firma: 4 passi per gestire la privacy. Per aziende, consulenti e studi legali.",
     url: "https://maitime.ai/secretum/come-funziona",
     type: "website",
     images: [
@@ -27,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Come Funziona MAITIME SECRETUM — 4 Passi per la Compliance",
+    title: "Come Funziona MAITIME SECRETUM — 4 Passi per la Compliance GDPR",
     description:
-      "Dalla registrazione alla firma: 4 passi per gestire la privacy condominiale.",
+      "Dalla registrazione alla firma: 4 passi per gestire la privacy della tua organizzazione.",
     images: ["/assets/og-image.png"],
   },
 };
@@ -39,9 +42,9 @@ const jsonLd = {
   "@type": "HowTo",
   name: "Come Funziona MAITIME SECRETUM",
   description:
-    "Quattro passaggi per gestire la compliance privacy condominiale con Secretum.",
+    "Quattro passaggi per gestire la compliance privacy della tua organizzazione con Secretum.",
   step: [
-    ...secretumStepsStudio.map((s, i) => ({
+    ...secretumStepsOrganization.map((s, i) => ({
       "@type": "HowToStep",
       position: i + 1,
       name: s.title,
@@ -85,23 +88,22 @@ export default function SecretumComeFunzionaPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/60">
-            Due percorsi, un unico obiettivo: la compliance privacy
-            condominiale. Scegli il tuo ruolo e scopri come Secretum ti
-            semplifica il lavoro.
+            Due percorsi, un unico obiettivo: la compliance privacy. Scegli il
+            tuo ruolo e scopri come Secretum ti semplifica il lavoro.
           </p>
         </div>
       </section>
 
-      {/* Studio di Amministrazione Flow */}
+      {/* Organization Flow */}
       <AnimatedSection className="section-light px-4 py-24 sm:px-6">
         <div className="mx-auto max-w-5xl">
           <AnimatedHeading subtitle="Da zero a compliance in 4 semplici passi.">
-            <span className="mr-3 inline-block text-4xl">🏛️</span>
-            Per lo Studio di Amministrazione
+            <span className="mr-3 inline-block text-4xl">🏢</span>
+            Per Aziende e Attività
           </AnimatedHeading>
 
           <div className="grid gap-8 md:grid-cols-2">
-            {secretumStepsStudio.map((step, i) => (
+            {secretumStepsOrganization.map((step, i) => (
               <GlowCard key={step.step} delay={i * 0.15}>
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#06B6D4]/20 to-[#0891B2]/20 text-xl font-bold text-[#06B6D4]">
                   {step.step}
@@ -114,16 +116,16 @@ export default function SecretumComeFunzionaPage() {
         </div>
       </AnimatedSection>
 
-      {/* DPO / Studio Legale Flow */}
+      {/* Consultant / DPO / Law Firm Flow */}
       <AnimatedSection className="section-dark px-4 py-24 sm:px-6">
         <div className="mx-auto max-w-5xl">
           <AnimatedHeading subtitle="Dall'audit al report professionale, tutto digitale.">
-            <span className="mr-3 inline-block text-4xl">⚖️</span>
-            Per lo Studio Legale / DPO
+            <span className="mr-3 inline-block text-4xl">🛡️</span>
+            Per Consulenti, DPO e Studi Legali
           </AnimatedHeading>
 
           <div className="grid gap-8 md:grid-cols-2">
-            {secretumStepsDPO.map((step, i) => (
+            {secretumStepsConsultant.map((step, i) => (
               <GlowCard key={step.step} delay={i * 0.15}>
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#06B6D4]/20 to-[#0891B2]/20 text-xl font-bold text-[#06B6D4]">
                   {step.step}

@@ -5,7 +5,7 @@ import AnimatedHeading from "@/components/AnimatedHeading";
 import { secretumFAQs } from "@/lib/secretum";
 
 export const metadata: Metadata = {
-  title: "FAQ MAITIME SECRETUM — Domande Frequenti sulla Privacy Condominiale",
+  title: "FAQ MAITIME SECRETUM — Domande Frequenti su Privacy e GDPR",
   description:
     "Risposte alle domande più frequenti su MAITIME SECRETUM: conformità GDPR, firma elettronica, assistente AI, audit di compliance e sicurezza dei dati.",
   alternates: { canonical: "https://maitime.ai/secretum/faq" },

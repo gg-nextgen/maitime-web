@@ -75,7 +75,8 @@ export default function Header() {
             </button>
 
             {prodottiOpen && (
-              <div className="absolute top-full left-1/2 z-50 mt-2 w-72 -translate-x-1/2 rounded-xl border border-white/10 bg-[#000020]/95 p-4 shadow-2xl backdrop-blur-xl">
+              <div className="absolute top-full left-1/2 z-50 w-72 -translate-x-1/2 pt-2">
+              <div className="rounded-xl border border-white/10 bg-[#000020]/95 p-4 shadow-2xl backdrop-blur-xl">
                 {/* OPERA */}
                 <div className="mb-3">
                   <Link
@@ -131,7 +132,7 @@ export default function Header() {
                     </span>
                   </Link>
                   <p className="mb-2 text-xs text-white/40">
-                    Privacy condominiale con AI
+                    Gestione privacy e compliance GDPR
                   </p>
                   <div className="ml-2 space-y-1">
                     <Link
@@ -157,6 +158,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
+              </div>
               </div>
             )}
           </div>
