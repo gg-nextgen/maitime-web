@@ -28,12 +28,12 @@ export async function generateMetadata({
     title: `${resource.title} | Risorsa Gratuita`,
     description: resource.description,
     alternates: {
-      canonical: `https://maitime.ai/risorse/${resource.slug}`,
+      canonical: `https://maitime.ai/opera/risorse/${resource.slug}`,
     },
     openGraph: {
       title: resource.title,
       description: resource.description,
-      url: `https://maitime.ai/risorse/${resource.slug}`,
+      url: `https://maitime.ai/opera/risorse/${resource.slug}`,
       type: "article",
       publishedTime: resource.date,
       authors: ["G&G NextGen"],
@@ -73,7 +73,7 @@ export default async function ResourcePage({ params }: PageProps) {
               Home
             </Link>
             <span className="mx-2">/</span>
-            <Link href="/risorse" className="hover:text-white/80">
+            <Link href="/opera/risorse" className="hover:text-white/80">
               Risorse
             </Link>
             <span className="mx-2">/</span>
@@ -220,7 +220,7 @@ export default async function ResourcePage({ params }: PageProps) {
           {/* Back link */}
           <div className="mt-12">
             <Link
-              href="/risorse"
+              href="/opera/risorse"
               className="text-maitime-accent underline underline-offset-4 hover:text-maitime-accent-hover"
             >
               &larr; Tutte le risorse

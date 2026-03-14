@@ -250,7 +250,7 @@ export default function HomePage() {
 
           <div className="mt-12 text-center">
             <Link
-              href="/come-funziona"
+              href="/opera/come-funziona"
               className="text-[#FF00FF] underline underline-offset-4 transition-colors hover:text-[#FF00FF]/80"
             >
               Scopri tutti i dettagli &rarr;
@@ -342,7 +342,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/risorse"
+              href="/opera/risorse"
               className="hidden text-[#FF00FF] underline underline-offset-4 sm:block"
             >
               Vedi tutte &rarr;
@@ -351,7 +351,7 @@ export default function HomePage() {
 
           <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 max-w-2xl mx-auto">
             <GlowCard delay={0}>
-              <Link href="/risorse/guida-controllo-commerciale-pmi" className="flex flex-col sm:flex-row gap-6 items-center">
+              <Link href="/opera/risorse/guida-controllo-commerciale-pmi" className="flex flex-col sm:flex-row gap-6 items-center">
                 <div className="relative w-full sm:w-40 aspect-[3/4] flex-shrink-0 overflow-hidden rounded-lg">
                   <img
                     src="/assets/resources/guida-controllo-commerciale-cover.webp"
@@ -380,11 +380,74 @@ export default function HomePage() {
 
           <div className="mt-8 text-center sm:hidden">
             <Link
-              href="/risorse"
+              href="/opera/risorse"
               className="text-[#FF00FF] underline underline-offset-4"
             >
               Vedi tutte le risorse &rarr;
             </Link>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ════════════════════════════════════════════════
+          ECOSISTEMA MAITIME
+          ════════════════════════════════════════════════ */}
+      <AnimatedSection className="section-dark px-4 py-24 sm:px-6">
+        <div className="mx-auto max-w-5xl">
+          <AnimatedHeading subtitle="Un ecosistema di piattaforme AI, ognuna specializzata per il tuo settore.">
+            I Prodotti MAITIME
+          </AnimatedHeading>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* OPERA */}
+            <GlowCard>
+              <Link href="/opera" className="block h-full">
+                <span className="mb-3 inline-block rounded-full bg-gradient-to-r from-[#5B21B6] to-[#FF00FF] px-3 py-1 text-[11px] font-bold tracking-wide text-white uppercase">
+                  Disponibile
+                </span>
+                <h3 className="mb-1 text-2xl font-bold text-[#FF00FF]">
+                  MAITIME OPERA
+                </h3>
+                <p className="mb-3 text-sm font-medium text-white/50">
+                  L&apos;agente AI della tua PMI
+                </p>
+                <p className="text-sm leading-relaxed text-white/60">
+                  Si collega al tuo gestionale, analizza i dati e ti suggerisce
+                  le migliori strategie. 18 moduli per vendite, produzione,
+                  amministrazione, customer care, risorse umane e strategie.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#FF00FF]">
+                  Scopri OPERA &rarr;
+                </span>
+              </Link>
+            </GlowCard>
+
+            {/* SECRETUM */}
+            <GlowCard>
+              <Link href="/secretum" className="block h-full">
+                <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-[#06B6D4]/30 bg-[#06B6D4]/10 px-3 py-1 text-[11px] font-bold tracking-wide text-[#06B6D4] uppercase">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#06B6D4] opacity-75" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#06B6D4]" />
+                  </span>
+                  Coming Soon
+                </span>
+                <h3 className="mb-1 text-2xl font-bold text-[#06B6D4]">
+                  MAITIME SECRETUM
+                </h3>
+                <p className="mb-3 text-sm font-medium text-white/50">
+                  La privacy condominiale, finalmente semplice
+                </p>
+                <p className="text-sm leading-relaxed text-white/60">
+                  Genera, gestisce e firma i documenti privacy obbligatori per i
+                  condomini. Firma elettronica OTP, dashboard compliance, audit
+                  digitali e assistente AI integrato.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#06B6D4]">
+                  Scopri SECRETUM &rarr;
+                </span>
+              </Link>
+            </GlowCard>
           </div>
         </div>
       </AnimatedSection>

@@ -6,28 +6,28 @@ import GlowCard from "@/components/GlowCard";
 import { departments, getModulesByDepartment } from "@/lib/modules";
 
 export const metadata: Metadata = {
-  title: "Piattaforma AI per PMI — Tutti i Moduli",
+  title: "Piattaforma MAITIME OPERA — Tutti i Moduli AI per PMI",
   description:
     "Scopri tutti i moduli della piattaforma MAITIME: vendite, produzione, magazzino, customer care, risorse umane e strategie. 18 moduli AI + Chat con il Direttore.",
-  alternates: { canonical: "https://maitime.ai/piattaforma" },
+  alternates: { canonical: "https://maitime.ai/opera/piattaforma" },
   openGraph: {
-    title: "Piattaforma MAITIME — 18 Moduli AI per la Tua Impresa",
+    title: "MAITIME OPERA — 18 Moduli AI per la Tua Impresa",
     description:
       "Dashboard vendite, gestione clienti, magazzino, ordini, chatbot AI, gestione progetti e molto altro. Tutto in un'unica piattaforma.",
-    url: "https://maitime.ai/piattaforma",
+    url: "https://maitime.ai/opera/piattaforma",
     type: "website",
     images: [
       {
         url: "/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Piattaforma MAITIME — 18 Moduli AI per PMI",
+        alt: "MAITIME OPERA — 18 Moduli AI per PMI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Piattaforma MAITIME — 18 Moduli AI per la Tua Impresa",
+    title: "MAITIME OPERA — 18 Moduli AI per la Tua Impresa",
     description:
       "Dashboard vendite, gestione clienti, magazzino, ordini, chatbot AI e molto altro. Tutto in un'unica piattaforma.",
     images: ["/assets/og-image.png"],
@@ -43,13 +43,13 @@ const planColor = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Piattaforma MAITIME — 18 Moduli AI per PMI",
+  name: "MAITIME OPERA — 18 Moduli AI per PMI",
   description:
     "Scopri tutti i moduli della piattaforma MAITIME: vendite, produzione, magazzino, customer care, risorse umane e strategie.",
-  url: "https://maitime.ai/piattaforma",
+  url: "https://maitime.ai/opera/piattaforma",
   mainEntity: {
     "@type": "SoftwareApplication",
-    name: "MAITIME",
+    name: "MAITIME OPERA",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: [
@@ -149,7 +149,7 @@ export default function PiattaformaPage() {
                 {deptModules.map((mod, i) => (
                   <GlowCard key={mod.slug} delay={i * 0.1}>
                     <Link
-                      href={`/piattaforma/${mod.slug}`}
+                      href={`/opera/piattaforma/${mod.slug}`}
                       className="block h-full"
                     >
                       {/* Plan badge */}
@@ -221,7 +221,7 @@ export default function PiattaformaPage() {
             </span>
             <div className="mt-8">
               <Link
-                href="/piattaforma/chat-direttore"
+                href="/opera/piattaforma/chat-direttore"
                 className="glow-button inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#5B21B6] to-[#FF00FF] px-8 py-4 text-lg font-bold text-white transition-transform hover:scale-105"
               >
                 Scopri il Direttore &rarr;
@@ -237,7 +237,7 @@ export default function PiattaformaPage() {
       <AnimatedSection className="section-dark px-4 py-24 sm:px-6">
         <div className="mx-auto max-w-4xl">
           <AnimatedHeading subtitle="Scegli il piano più adatto alla tua azienda.">
-            I Piani MAITIME
+            I Piani MAITIME OPERA
           </AnimatedHeading>
 
           <div className="grid gap-6 md:grid-cols-2">

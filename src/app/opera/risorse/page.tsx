@@ -8,26 +8,26 @@ export const metadata: Metadata = {
   description:
     "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione della propria azienda con l'AI e i dati.",
   alternates: {
-    canonical: "https://maitime.ai/risorse",
+    canonical: "https://maitime.ai/opera/risorse",
   },
   openGraph: {
-    title: "Risorse Gratuite per le PMI — MAITIME",
+    title: "Risorse Gratuite per le PMI — MAITIME OPERA",
     description:
       "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale con l'AI.",
-    url: "https://maitime.ai/risorse",
+    url: "https://maitime.ai/opera/risorse",
     type: "website",
     images: [
       {
         url: "/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Risorse Gratuite MAITIME per PMI",
+        alt: "Risorse Gratuite MAITIME OPERA per PMI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Risorse Gratuite per le PMI — MAITIME",
+    title: "Risorse Gratuite per le PMI — MAITIME OPERA",
     description:
       "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale con l'AI.",
     images: ["/assets/og-image.png"],
@@ -43,14 +43,14 @@ export default function RisorsePage() {
     name: "Risorse Gratuite per le PMI",
     description:
       "eBook, guide e materiali scaricabili per imprenditori che vogliono ottimizzare la gestione aziendale.",
-    url: "https://maitime.ai/risorse",
+    url: "https://maitime.ai/opera/risorse",
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: resources.length,
       itemListElement: resources.map((r, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `https://maitime.ai/risorse/${r.slug}`,
+        url: `https://maitime.ai/opera/risorse/${r.slug}`,
         name: r.title,
       })),
     },
@@ -84,7 +84,7 @@ export default function RisorsePage() {
             {resources.map((resource) => (
               <Link
                 key={resource.slug}
-                href={`/risorse/${resource.slug}`}
+                href={`/opera/risorse/${resource.slug}`}
                 className="group flex flex-col overflow-hidden rounded-xl border border-maitime-border bg-maitime-card transition-all hover:-translate-y-1 hover:border-maitime-accent/40"
               >
                 {/* Cover Image */}

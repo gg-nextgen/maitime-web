@@ -5,26 +5,26 @@ export const metadata: Metadata = {
   description:
     "Scopri come MAITIME si integra con il tuo gestionale e ti aiuta ad analizzare dati, gestire clienti e automatizzare le comunicazioni.",
   alternates: {
-    canonical: "https://maitime.ai/come-funziona",
+    canonical: "https://maitime.ai/opera/come-funziona",
   },
   openGraph: {
-    title: "Come Funziona MAITIME — AI per la Tua Azienda",
+    title: "Come Funziona MAITIME OPERA — AI per la Tua Azienda",
     description:
       "Collega il tuo gestionale, fai una domanda in linguaggio naturale, ricevi analisi e suggerimenti pronti all'uso.",
-    url: "https://maitime.ai/come-funziona",
+    url: "https://maitime.ai/opera/come-funziona",
     type: "website",
     images: [
       {
         url: "/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Come Funziona MAITIME",
+        alt: "Come Funziona MAITIME OPERA",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Come Funziona MAITIME — AI per la Tua Azienda",
+    title: "Come Funziona MAITIME OPERA — AI per la Tua Azienda",
     description:
       "Collega il tuo gestionale, fai una domanda in linguaggio naturale, ricevi analisi e suggerimenti pronti all'uso.",
     images: ["/assets/og-image.png"],
@@ -61,7 +61,7 @@ const videos = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "Come Funziona MAITIME",
+  name: "Come Funziona MAITIME OPERA",
   description:
     "Tre passaggi per trasformare la gestione della tua azienda con l'AI.",
   step: [
@@ -98,7 +98,7 @@ export default function ComeFunzionaPage() {
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-bold sm:text-5xl">
             Come Funziona{" "}
-            <span className="text-maitime-accent">MAITIME</span>
+            <span className="text-maitime-accent">MAITIME OPERA</span>
           </h1>
           <p className="mt-6 text-lg text-white/70">
             Tre passaggi per trasformare la gestione della tua azienda. Nessuna
